@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://komiguai.ppoonn.net/sitemap.xml

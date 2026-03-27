@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>首都圏の通勤混雑度を比較 - こみぐあい | 引越し先の混雑ルートを一括チェック</title>
+  <meta name="description" content="引越し先の通勤ラッシュがどれくらいか、駅ごとに比較できる無料Webサービス。国土交通省の公式データに基づく混雑率・ピーク時間帯・最混雑区間が一目でわかります。">
+  <meta name="keywords" content="引越し,混雑,比較,通勤,混雑率,首都圏,ランキング,電車,ラッシュ,おすすめ,駅">
+  <link rel="canonical" href="https://komiguai.ppoonn.net/lp/">
+
+  <!-- OGP -->
+  <meta property="og:title" content="こみぐあい - 首都圏通勤混雑度比較">
+  <meta property="og:description" content="引越し先の通勤ラッシュを駅ごとに比較。国土交通省の公式データに基づく混雑率情報。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://komiguai.ppoonn.net/lp/">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="こみぐあい">
+  <meta property="og:image" content="https://komiguai.ppoonn.net/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="こみぐあい - 首都圏通勤混雑度比較">
+  <meta name="twitter:description" content="引越し先の通勤ラッシュを駅ごとに比較。">
+  <meta name="twitter:image" content="https://komiguai.ppoonn.net/ogp.png">
+
+  <!-- 構造化データ (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "こみぐあい",
+    "url": "https://komiguai.ppoonn.net",
+    "description": "首都圏の通勤ルートの混雑度を比較できるWebサービス",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY"
+    }
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      line-height: 1.8;
+      color: #1a1a2e;
+      background: #f5f5f9;
+    }
+    a { color: #6366f1; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 20px 48px;
+    }
+    .hero h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 16px;
+      opacity: 0.9;
+      max-width: 480px;
+      margin: 0 auto 28px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: #6366f1;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px 40px;
+      border-radius: 12px;
+      transition: transform 0.2s;
+    }
+    .cta-btn:hover { transform: scale(1.05); text-decoration: none; }
+
+    /* Container */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Section */
+    section {
+      padding: 40px 0;
+    }
+    section h2 {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: #1a1a2e;
+    }
+    section h2 span {
+      color: #6366f1;
+    }
+
+    /* Pain points */
+    .pain {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 12px;
+      border-left: 4px solid #6366f1;
+    }
+    .pain-title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .pain-desc {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* Features */
+    .feature {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      background: #f0f0ff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .feature-title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .feature-desc {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* Ranking */
+    .rank-list { list-style: none; }
+    .rank-item {
+      background: white;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .rank-num {
+      font-size: 18px;
+      font-weight: 800;
+      color: #6366f1;
+      width: 28px;
+      text-align: center;
+    }
+    .rank-info { flex: 1; }
+    .rank-line {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .rank-section {
+      font-size: 12px;
+      color: #888;
+    }
+    .rank-rate {
+      font-size: 14px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+    .rate-red { background: #fef2f2; color: #ef4444; }
+    .rate-orange { background: #fff7ed; color: #f97316; }
+    .rate-yellow { background: #fefce8; color: #ca8a04; }
+
+    /* Popular routes */
+    .routes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .route-link {
+      background: white;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a2e;
+      display: block;
+      transition: background 0.2s;
+    }
+    .route-link:hover {
+      background: #f0f0ff;
+      text-decoration: none;
+    }
+    .route-arrow { color: #6366f1; margin: 0 4px; }
+
+    /* Tips */
+    .tip {
+      background: #f0f0ff;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #444;
+      border: 1px solid #e0e0ff;
+    }
+    .tip strong { color: #6366f1; }
+
+    /* CTA bottom */
+    .cta-bottom {
+      text-align: center;
+      padding: 48px 20px;
+      background: white;
+    }
+    .cta-bottom h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .cta-bottom p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 24px;
+    }
+    .cta-btn-lg {
+      display: inline-block;
+      background: #6366f1;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 16px 48px;
+      border-radius: 12px;
+      transition: transform 0.2s;
+    }
+    .cta-btn-lg:hover { transform: scale(1.05); text-decoration: none; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 12px;
+      color: #888;
+    }
+    footer a { color: #888; }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 22px; }
+      .routes-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>こみぐあい</h1>
+    <p>首都圏の通勤ルートの混雑度を比較して<br>最適な引越し先を見つけよう</p>
+    <a href="https://komiguai.ppoonn.net/" class="cta-btn">🔍 混雑度を調べる</a>
+  </div>
+
+  <!-- Pain points -->
+  <section>
+    <div class="container">
+      <h2>こんな<span>悩み</span>ありませんか？</h2>
+      <div class="pain">
+        <div class="pain-title">😰 引越し先の通勤ラッシュが不安</div>
+        <div class="pain-desc">住んでみないと混雑度がわからない…朝のピーク時間はどれくらい混むの？</div>
+      </div>
+      <div class="pain">
+        <div class="pain-title">🤔 候補が複数あって決められない</div>
+        <div class="pain-desc">練馬と板橋と柏、どの駅が一番通勤が楽？家賃だけじゃ決められない</div>
+      </div>
+      <div class="pain">
+        <div class="pain-title">📊 信頼できるデータが欲しい</div>
+        <div class="pain-desc">口コミや感覚ではなく、公式なデータで比較したい</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section style="background:white;">
+    <div class="container">
+      <h2>こみぐあいで<span>解決</span></h2>
+      <div class="feature">
+        <div class="feature-icon">🔍</div>
+        <div>
+          <div class="feature-title">ルートの混雑度を検索</div>
+          <div class="feature-desc">出発駅と到着駅を入力するだけ。混雑率・ピーク時間帯・最混雑区間がすぐわかります。</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <div>
+          <div class="feature-title">複数の駅をまとめて比較</div>
+          <div class="feature-desc">引越し候補を最大5駅まで登録し、通勤の快適さを一覧で比較。おすすめ度も表示。</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🗺️</div>
+        <div>
+          <div class="feature-title">地図で位置関係を確認</div>
+          <div class="feature-desc">候補駅の位置と通勤ルートを地図上に表示。路線カラーでルートの違いが一目瞭然。</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">✅</div>
+        <div>
+          <div class="feature-title">国土交通省の公式データ</div>
+          <div class="feature-desc">令和6年度の実績データに基づく信頼性の高い混雑率情報。首都圏の主要路線をカバー。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ranking -->
+  <section>
+    <div class="container">
+      <h2>首都圏<span>混雑路線ランキング</span> TOP10</h2>
+      <p style="font-size:13px;color:#666;margin:-12px 0 16px;">朝のピーク1時間の混雑率（令和6年度 国土交通省実績）</p>
+      <ol class="rank-list">
+        <li class="rank-item">
+          <div class="rank-num">1</div>
+          <div class="rank-info"><div class="rank-line">JR中央線快速</div><div class="rank-section">中野→新宿</div></div>
+          <div class="rank-rate rate-red">161%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">2</div>
+          <div class="rank-info"><div class="rank-line">大江戸線</div><div class="rank-section">中井→東中野</div></div>
+          <div class="rank-rate rate-orange">155%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">3</div>
+          <div class="rank-info"><div class="rank-line">東西線</div><div class="rank-section">木場→門前仲町</div></div>
+          <div class="rank-rate rate-orange">150%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">4</div>
+          <div class="rank-info"><div class="rank-line">銀座線</div><div class="rank-section">赤坂見附→溜池山王</div></div>
+          <div class="rank-rate rate-orange">147%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">5</div>
+          <div class="rank-info"><div class="rank-line">丸ノ内線</div><div class="rank-section">新大塚→茗荷谷</div></div>
+          <div class="rank-rate rate-orange">146%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">6</div>
+          <div class="rank-info"><div class="rank-line">JR南武線</div><div class="rank-section">武蔵中原→武蔵小杉</div></div>
+          <div class="rank-rate rate-orange">145%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">7</div>
+          <div class="rank-info"><div class="rank-line">日暮里舎人ライナー</div><div class="rank-section">赤土小学校前→西日暮里</div></div>
+          <div class="rank-rate rate-orange">144%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">8</div>
+          <div class="rank-info"><div class="rank-line">つくばエクスプレス</div><div class="rank-section">青井→北千住</div></div>
+          <div class="rank-rate rate-orange">141%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">9</div>
+          <div class="rank-info"><div class="rank-line">JR山手線</div><div class="rank-section">新大久保→新宿</div></div>
+          <div class="rank-rate rate-yellow">139%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">10</div>
+          <div class="rank-info"><div class="rank-line">西武新宿線</div><div class="rank-section">下落合→高田馬場</div></div>
+          <div class="rank-rate rate-yellow">137%</div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Popular routes -->
+  <section style="background:white;">
+    <div class="container">
+      <h2>よく比較される<span>通勤ルート</span></h2>
+      <div class="routes-grid">
+        <a href="https://komiguai.ppoonn.net/results?from=%E7%B7%B4%E9%A6%AC&to=%E6%96%B0%E5%AE%BF" class="route-link">練馬<span class="route-arrow">→</span>新宿</a>
+        <a href="https://komiguai.ppoonn.net/results?from=%E6%B1%A0%E8%A2%8B&to=%E6%9D%B1%E4%BA%AC" class="route-link">池袋<span class="route-arrow">→</span>東京</a>
+        <a href="https://komiguai.ppoonn.net/results?from=%E6%A8%AA%E6%B5%9C&to=%E5%93%81%E5%B7%9D" class="route-link">横浜<span class="route-arrow">→</span>品川</a>
+        <a href="https://komiguai.ppoonn.net/results?from=%E6%B8%8B%E8%B0%B7&to=%E5%A4%A7%E6%89%8B%E7%94%BA" class="route-link">渋谷<span class="route-arrow">→</span>大手町</a>
+        <a href="https://komiguai.ppoonn.net/results?from=%E5%90%89%E7%A5%A5%E5%AF%BA&to=%E6%9D%B1%E4%BA%AC" class="route-link">吉祥寺<span class="route-arrow">→</span>東京</a>
+        <a href="https://komiguai.ppoonn.net/results?from=%E6%AD%A6%E8%94%B5%E5%B0%8F%E6%9D%89&to=%E6%B8%8B%E8%B0%B7" class="route-link">武蔵小杉<span class="route-arrow">→</span>渋谷</a>
+        <a href="https://komiguai.ppoonn.net/results?from=%E5%8C%97%E5%8D%83%E4%BD%8F&to=%E5%A4%A7%E5%B4%8E" class="route-link">北千住<span class="route-arrow">→</span>大崎</a>
+        <a href="https://komiguai.ppoonn.net/results?from=%E5%A4%A7%E5%AE%AE&to=%E6%9D%B1%E4%BA%AC" class="route-link">大宮<span class="route-arrow">→</span>東京</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips -->
+  <section>
+    <div class="container">
+      <h2>知っておきたい<span>混雑の目安</span></h2>
+      <div class="tip"><strong>混雑率100%</strong> — 定員ぴったり。座席が埋まり、つり革・ドア付近の柱にもたれかかる人がいる程度。</div>
+      <div class="tip"><strong>混雑率130%</strong> — 新聞を広げて読める。スマホ操作も可能。多くの人が立っている状態。</div>
+      <div class="tip"><strong>混雑率150%</strong> — 週刊誌など小さめの印刷物なら読める。肩が触れ合う程度。</div>
+      <div class="tip"><strong>混雑率180%</strong> — 体が圧迫される。身動きが取れない状態。</div>
+      <p style="font-size:12px;color:#888;margin-top:8px;">※ 国土交通省の混雑率の目安に基づく</p>
+    </div>
+  </section>
+
+  <!-- CTA bottom -->
+  <div class="cta-bottom">
+    <div class="container">
+      <h2>引越し先の混雑度、調べてみませんか？</h2>
+      <p>無料で使えます。会員登録も不要です。</p>
+      <a href="https://komiguai.ppoonn.net/" class="cta-btn-lg">混雑度を調べる →</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      <a href="https://komiguai.ppoonn.net/">こみぐあい</a> |
+      <a href="https://ppoonn.net/komiguai/privacy-policy.html">プライバシーポリシー</a>
+    </p>
+    <p style="margin-top:8px;">© 2026 こみぐあい | 混雑率データ: 国土交通省 令和6年度(2024)実績</p>
+  </footer>
+
+</body>
+</html>
