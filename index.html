@@ -1,239 +1,599 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PPOONN STUDIO</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>こみぐあい - 首都圏の通勤混雑度を比較 | 引越し先の混雑ルートを一括チェック</title>
+  <meta name="description" content="引越し先の通勤ラッシュがどれくらいか、駅ごとに比較できる無料Webサービス『こみぐあい』公式サイト。国土交通省の公式データに基づく混雑率・ピーク時間帯・最混雑区間が一目でわかります。">
+  <meta name="keywords" content="引越し,混雑,比較,通勤,混雑率,首都圏,ランキング,電車,ラッシュ,おすすめ,駅">
+  <link rel="canonical" href="https://ppoonn.net/">
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
-            line-height: 1.8;
-            color: #333;
-            background: #fff;
-        }
+  <!-- OGP -->
+  <meta property="og:title" content="こみぐあい - 首都圏通勤混雑度比較">
+  <meta property="og:description" content="引越し先の通勤ラッシュを駅ごとに比較。国土交通省の公式データに基づく混雑率情報。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ppoonn.net/">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="こみぐあい">
+  <meta property="og:image" content="https://komiguai.ppoonn.net/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="こみぐあい - 首都圏通勤混雑度比較">
+  <meta name="twitter:description" content="引越し先の通勤ラッシュを駅ごとに比較。">
+  <meta name="twitter:image" content="https://komiguai.ppoonn.net/ogp.png">
 
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 80px 24px;
-        }
+  <!-- 構造化データ (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "こみぐあい",
+    "url": "https://komiguai.ppoonn.net",
+    "description": "首都圏の通勤ルートの混雑度を比較できるWebサービス",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY"
+    }
+  }
+  </script>
 
-        header {
-            margin-bottom: 64px;
-        }
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      line-height: 1.8;
+      color: #1a1a2e;
+      background: #f5f5f9;
+    }
+    a { color: #6366f1; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-        h1 {
-            font-size: 32px;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            margin-bottom: 16px;
-        }
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 20px 48px;
+    }
+    .hero h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 16px;
+      opacity: 0.9;
+      max-width: 480px;
+      margin: 0 auto 28px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: #6366f1;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px 40px;
+      border-radius: 12px;
+      transition: transform 0.2s;
+    }
+    .cta-btn:hover { transform: scale(1.05); text-decoration: none; }
 
-        .tagline {
-            color: #666;
-            font-size: 16px;
-        }
+    /* Container */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-        section {
-            margin-bottom: 56px;
-        }
+    /* Section */
+    section {
+      padding: 40px 0;
+    }
+    section h2 {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: #1a1a2e;
+    }
+    section h2 span {
+      color: #6366f1;
+    }
 
-        h2 {
-            font-size: 14px;
-            font-weight: 600;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 24px;
-        }
+    /* Pain points */
+    .pain {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 12px;
+      border-left: 4px solid #6366f1;
+    }
+    .pain-title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .pain-desc {
+      font-size: 13px;
+      color: #666;
+    }
 
-        .app {
-            display: flex;
-            gap: 20px;
-            padding: 24px 0;
-            border-bottom: 1px solid #eee;
-        }
+    /* Features */
+    .feature {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      background: #f0f0ff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .feature-title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .feature-desc {
+      font-size: 13px;
+      color: #666;
+    }
 
-        .app:last-child {
-            border-bottom: none;
-        }
+    /* Ranking */
+    .rank-list { list-style: none; }
+    .rank-item {
+      background: white;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .rank-num {
+      font-size: 18px;
+      font-weight: 800;
+      color: #6366f1;
+      width: 28px;
+      text-align: center;
+    }
+    .rank-info { flex: 1; }
+    .rank-line {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .rank-section {
+      font-size: 12px;
+      color: #888;
+    }
+    .rank-rate {
+      font-size: 14px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+    .rate-red { background: #fef2f2; color: #ef4444; }
+    .rate-orange { background: #fff7ed; color: #f97316; }
+    .rate-yellow { background: #fefce8; color: #ca8a04; }
 
-        .app-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 18px;
-            flex-shrink: 0;
-            object-fit: cover;
-        }
+    /* Popular routes */
+    .routes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .route-link {
+      background: white;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a2e;
+      display: block;
+      transition: background 0.2s;
+    }
+    .route-link:hover {
+      background: #f0f0ff;
+      text-decoration: none;
+    }
+    .route-arrow { color: #6366f1; margin: 0 4px; }
 
-        .app-info {
-            flex: 1;
-        }
+    /* Tips */
+    .tip {
+      background: #f0f0ff;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #444;
+      border: 1px solid #e0e0ff;
+    }
+    .tip strong { color: #6366f1; }
 
-        .app-name {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
+    /* CTA bottom */
+    .cta-bottom {
+      text-align: center;
+      padding: 48px 20px;
+      background: white;
+    }
+    .cta-bottom h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .cta-bottom p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 24px;
+    }
+    .cta-btn-lg {
+      display: inline-block;
+      background: #6366f1;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 16px 48px;
+      border-radius: 12px;
+      transition: transform 0.2s;
+    }
+    .cta-btn-lg:hover { transform: scale(1.05); text-decoration: none; }
 
-        .app-description {
-            color: #666;
-            font-size: 15px;
-            margin-bottom: 16px;
-        }
+    /* Other apps */
+    .other-apps {
+      background: #f5f5f9;
+      padding: 40px 0;
+    }
+    .app {
+      display: flex;
+      gap: 16px;
+      padding: 16px;
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      align-items: flex-start;
+    }
+    .app-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+    .app-info { flex: 1; min-width: 0; }
+    .app-name {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .app-description {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    .app-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .app-links a {
+      color: #555;
+      text-decoration: none;
+      font-size: 12px;
+      padding: 4px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: white;
+    }
+    .app-links a:hover {
+      background: #f0f0ff;
+      border-color: #6366f1;
+      color: #6366f1;
+      text-decoration: none;
+    }
 
-        .app-links {
-            display: flex;
-            gap: 16px;
-        }
+    /* About / Contact */
+    .about-box {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 13px;
+      color: #555;
+    }
+    .about-box dt {
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-top: 8px;
+    }
+    .about-box dt:first-child { margin-top: 0; }
+    .about-box dd { margin-bottom: 4px; }
 
-        .app-links a {
-            color: #333;
-            text-decoration: none;
-            font-size: 14px;
-            padding: 8px 16px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 24px 20px 40px;
+      font-size: 12px;
+      color: #888;
+    }
+    footer a { color: #888; margin: 0 6px; }
 
-        .app-links a:hover {
-            background: #f5f5f5;
-            border-color: #ccc;
-        }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 22px; }
+      .routes-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 
-        .contact-email {
-            font-size: 18px;
-        }
-
-        .contact-email a {
-            color: #333;
-            text-decoration: none;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .contact-email a:hover {
-            border-color: #333;
-        }
-
-        footer {
-            margin-top: 80px;
-            padding-top: 24px;
-            border-top: 1px solid #eee;
-            color: #999;
-            font-size: 13px;
-        }
-
-        @media (max-width: 480px) {
-            .app {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-    </style>
-
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8729348790986731"
-       crossorigin="anonymous"></script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8729348790986731"
+     crossorigin="anonymous"></script>
 </head>
 <body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>こみぐあい</h1>
+    <p>首都圏の通勤ルートの混雑度を比較して<br>最適な引越し先を見つけよう</p>
+    <a href="https://komiguai.ppoonn.net/" class="cta-btn">🔍 混雑度を調べる</a>
+  </div>
+
+  <!-- Pain points -->
+  <section>
     <div class="container">
-        <header>
-            <h1>PPOONN STUDIO</h1>
-            <p class="tagline">個人アプリ開発</p>
-        </header>
-
-        <section>
-            <h2>Apps</h2>
-            
-            <div class="app">
-                <img src="images/recipaIcon.png" alt="レシぱ" class="app-icon">
-                <div class="app-info">
-                    <div class="app-name">レシぱ</div>
-                    <p class="app-description">食材管理とAIレシピ提案を組み合わせた料理サポートアプリ。冷蔵庫の中身を登録すると、最適なレシピを提案し、買い物リストも自動生成します。</p>
-                    <div class="app-links">
-                        <a href="https://apps.apple.com/jp/app/%E3%83%AC%E3%82%B7%E3%81%B1-%E9%A3%9F%E6%9D%90%E7%AE%A1%E7%90%86%E3%81%A8%E8%B2%B7%E3%81%84%E7%89%A9%E3%83%A1%E3%83%A2%E3%81%A8%E3%83%AC%E3%82%B7%E3%83%94%E3%81%AE%E8%87%AA%E5%8B%95%E9%80%A3%E6%90%BA/id6754275917" target="_blank">App Store</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.PPOONN.recipa" target="_blank">Google Play</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="app">
-                <img src="images/limitedReversiIcon.png" alt="Limited Reversi" class="app-icon">
-                <div class="app-info">
-                    <div class="app-name">Limited Reversi</div>
-                    <p class="app-description">リバーシゲームにデッキ構築の要素を追加した、戦略性が進化した新感覚ゲーム。</p>
-                    <div class="app-links">
-                        <a href="https://apps.apple.com/jp/app/limited-reversi-%E3%83%AA%E3%83%9F%E3%83%86%E3%83%83%E3%83%89-%E3%83%AA%E3%83%90%E3%83%BC%E3%82%B7/id6753639395" target="_blank">App Store</a>
-                        <a href="https://play.google.com/store/apps/details?id=k.k.PPOONN.limited_reverai" target="_blank">Google Play</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="app">
-                <img src="images/jibunnmeisyo_icon.png" alt="じぶん名所図鑑" class="app-icon">
-                <div class="app-info">
-                    <div class="app-name">じぶん名所図鑑</div>
-                    <p class="app-description">日本各地の世界遺産・城・神社・温泉などの名所への訪問記録を写真付きで残せる旅のコレクションアプリ。</p>
-                    <div class="app-links">
-                        <a href="https://apps.apple.com/jp/app/%E3%81%98%E3%81%B6%E3%82%93%E5%90%8D%E6%89%80%E5%9B%B3%E9%91%91/id6758913122" target="_blank">App Store</a>
-                        <a href="https://play.google.com/store/apps/details?id=k.k.PPOONN.jibunnmeisyo" target="_blank">Google Play</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="app">
-                <img src="images/zatsumemo_icon.png" alt="雑メモまとめ" class="app-icon">
-                <div class="app-info">
-                    <div class="app-name">雑メモまとめ</div>
-                    <p class="app-description">思いついたことをチャット感覚で書き留めるだけで、AIが自動的にカテゴリ分類・整理してくれる新感覚メモアプリ。</p>
-                    <div class="app-links">
-                        <a href="https://apps.apple.com/jp/app/%E3%81%96%E3%81%A4%E3%83%A1%E3%83%A2%E3%81%BE%E3%81%A8%E3%82%81/id6759522112" target="_blank">App Store</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="app">
-                <img src="images/HanaLogicon.png" alt="はなログ" class="app-icon">
-                <div class="app-info">
-                    <div class="app-name">はなログ</div>
-                    <p class="app-description">花粉症の症状・服薬をまとめて管理。薬の飲み忘れ防止から花粉予報、個人傾向の分析まで、つらい花粉シーズンをサポートするアプリ。</p>
-                    <div class="app-links">
-                        <a href="https://apps.apple.com/jp/app/%E3%81%AF%E3%81%AA%E3%83%AD%E3%82%B0/id6760552588" target="_blank">App Store</a>
-                        <a href="https://play.google.com/store/apps/details?id=k.k.PPOONN.hanalog" target="_blank">Google Play</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="app">
-                <img src="images/komiguai_Icon.png" alt="こみぐあい" class="app-icon">
-                <div class="app-info">
-                    <div class="app-name">こみぐあい</div>
-                    <p class="app-description">首都圏の通勤ルートの混雑度を比較し、引越し先の検討をサポートするサービス。</p>
-                    <div class="app-links">
-                        <a href="https://komiguai.ppoonn.net" target="_blank">Web Site</a>
-                    </div>
-                </div>
-            </div>
-            
-        </section>
-
-        <section>
-            <h2>Contact</h2>
-            <p class="contact-email">
-                <a href="mailto:info@ppoonn.net">info@ppoonn.net</a>
-            </p>
-        </section>
-
-        <footer>
-            <p>&copy; 2026 PPOONN STUDIO</p>
-        </footer>
+      <h2>こんな<span>悩み</span>ありませんか？</h2>
+      <div class="pain">
+        <div class="pain-title">😰 引越し先の通勤ラッシュが不安</div>
+        <div class="pain-desc">住んでみないと混雑度がわからない…朝のピーク時間はどれくらい混むの？</div>
+      </div>
+      <div class="pain">
+        <div class="pain-title">🤔 候補が複数あって決められない</div>
+        <div class="pain-desc">練馬と板橋と柏、どの駅が一番通勤が楽？家賃だけじゃ決められない</div>
+      </div>
+      <div class="pain">
+        <div class="pain-title">📊 信頼できるデータが欲しい</div>
+        <div class="pain-desc">口コミや感覚ではなく、公式なデータで比較したい</div>
+      </div>
     </div>
+  </section>
+
+  <!-- Features -->
+  <section style="background:white;">
+    <div class="container">
+      <h2>こみぐあいで<span>解決</span></h2>
+      <div class="feature">
+        <div class="feature-icon">🔍</div>
+        <div>
+          <div class="feature-title">ルートの混雑度を検索</div>
+          <div class="feature-desc">出発駅と到着駅を入力するだけ。混雑率・ピーク時間帯・最混雑区間がすぐわかります。</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <div>
+          <div class="feature-title">複数の駅をまとめて比較</div>
+          <div class="feature-desc">引越し候補を最大5駅まで登録し、通勤の快適さを一覧で比較。おすすめ度も表示。</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🗺️</div>
+        <div>
+          <div class="feature-title">地図で位置関係を確認</div>
+          <div class="feature-desc">候補駅の位置と通勤ルートを地図上に表示。路線カラーでルートの違いが一目瞭然。</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">✅</div>
+        <div>
+          <div class="feature-title">国土交通省の公式データ</div>
+          <div class="feature-desc">令和6年度の実績データに基づく信頼性の高い混雑率情報。首都圏の主要路線をカバー。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ranking -->
+  <section>
+    <div class="container">
+      <h2>首都圏<span>混雑路線ランキング</span> TOP10</h2>
+      <p style="font-size:13px;color:#666;margin:-12px 0 16px;">朝のピーク1時間の混雑率（令和6年度 国土交通省実績）</p>
+      <ol class="rank-list">
+        <li class="rank-item">
+          <div class="rank-num">1</div>
+          <div class="rank-info"><div class="rank-line">JR中央線快速</div><div class="rank-section">中野→新宿</div></div>
+          <div class="rank-rate rate-red">161%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">2</div>
+          <div class="rank-info"><div class="rank-line">大江戸線</div><div class="rank-section">中井→東中野</div></div>
+          <div class="rank-rate rate-orange">155%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">3</div>
+          <div class="rank-info"><div class="rank-line">東西線</div><div class="rank-section">木場→門前仲町</div></div>
+          <div class="rank-rate rate-orange">150%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">4</div>
+          <div class="rank-info"><div class="rank-line">銀座線</div><div class="rank-section">赤坂見附→溜池山王</div></div>
+          <div class="rank-rate rate-orange">147%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">5</div>
+          <div class="rank-info"><div class="rank-line">丸ノ内線</div><div class="rank-section">新大塚→茗荷谷</div></div>
+          <div class="rank-rate rate-orange">146%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">6</div>
+          <div class="rank-info"><div class="rank-line">JR南武線</div><div class="rank-section">武蔵中原→武蔵小杉</div></div>
+          <div class="rank-rate rate-orange">145%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">7</div>
+          <div class="rank-info"><div class="rank-line">日暮里舎人ライナー</div><div class="rank-section">赤土小学校前→西日暮里</div></div>
+          <div class="rank-rate rate-orange">144%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">8</div>
+          <div class="rank-info"><div class="rank-line">つくばエクスプレス</div><div class="rank-section">青井→北千住</div></div>
+          <div class="rank-rate rate-orange">141%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">9</div>
+          <div class="rank-info"><div class="rank-line">JR山手線</div><div class="rank-section">新大久保→新宿</div></div>
+          <div class="rank-rate rate-yellow">139%</div>
+        </li>
+        <li class="rank-item">
+          <div class="rank-num">10</div>
+          <div class="rank-info"><div class="rank-line">西武新宿線</div><div class="rank-section">下落合→高田馬場</div></div>
+          <div class="rank-rate rate-yellow">137%</div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Popular routes -->
+  <section style="background:white;">
+    <div class="container">
+      <h2>よく比較される<span>通勤ルート</span></h2>
+      <div class="routes-grid">
+        <a href="https://komiguai.ppoonn.net/results?from=%E7%B7%B4%E9%A6%AC&to=%E6%96%B0%E5%AE%BF" class="route-link">練馬<span class="route-arrow">→</span>新宿</a>
+        <a href="https://komiguai.ppoonn.net/results?from=%E6%B1%A0%E8%A2%8B&to=%E6%9D%B1%E4%BA%AC" class="route-link">池袋<span class="route-arrow">→</span>東京</a>
+        <a href="https://komiguai.ppoonn.net/results?from=%E6%A8%AA%E6%B5%9C&to=%E5%93%81%E5%B7%9D" class="route-link">横浜<span class="route-arrow">→</span>品川</a>
+        <a href="https://komiguai.ppoonn.net/results?from=%E6%B8%8B%E8%B0%B7&to=%E5%A4%A7%E6%89%8B%E7%94%BA" class="route-link">渋谷<span class="route-arrow">→</span>大手町</a>
+        <a href="https://komiguai.ppoonn.net/results?from=%E5%90%89%E7%A5%A5%E5%AF%BA&to=%E6%9D%B1%E4%BA%AC" class="route-link">吉祥寺<span class="route-arrow">→</span>東京</a>
+        <a href="https://komiguai.ppoonn.net/results?from=%E6%AD%A6%E8%94%B5%E5%B0%8F%E6%9D%89&to=%E6%B8%8B%E8%B0%B7" class="route-link">武蔵小杉<span class="route-arrow">→</span>渋谷</a>
+        <a href="https://komiguai.ppoonn.net/results?from=%E5%8C%97%E5%8D%83%E4%BD%8F&to=%E5%A4%A7%E5%B4%8E" class="route-link">北千住<span class="route-arrow">→</span>大崎</a>
+        <a href="https://komiguai.ppoonn.net/results?from=%E5%A4%A7%E5%AE%AE&to=%E6%9D%B1%E4%BA%AC" class="route-link">大宮<span class="route-arrow">→</span>東京</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips -->
+  <section>
+    <div class="container">
+      <h2>知っておきたい<span>混雑の目安</span></h2>
+      <div class="tip"><strong>混雑率100%</strong> — 定員ぴったり。座席が埋まり、つり革・ドア付近の柱にもたれかかる人がいる程度。</div>
+      <div class="tip"><strong>混雑率130%</strong> — 新聞を広げて読める。スマホ操作も可能。多くの人が立っている状態。</div>
+      <div class="tip"><strong>混雑率150%</strong> — 週刊誌など小さめの印刷物なら読める。肩が触れ合う程度。</div>
+      <div class="tip"><strong>混雑率180%</strong> — 体が圧迫される。身動きが取れない状態。</div>
+      <p style="font-size:12px;color:#888;margin-top:8px;">※ 国土交通省の混雑率の目安に基づく</p>
+    </div>
+  </section>
+
+  <!-- CTA bottom -->
+  <div class="cta-bottom">
+    <div class="container">
+      <h2>引越し先の混雑度、調べてみませんか？</h2>
+      <p>無料で使えます。会員登録も不要です。</p>
+      <a href="https://komiguai.ppoonn.net/" class="cta-btn-lg">混雑度を調べる →</a>
+    </div>
+  </div>
+
+  <!-- Other apps -->
+  <section class="other-apps">
+    <div class="container">
+      <h2>運営者の<span>他のアプリ</span></h2>
+      <p style="font-size:13px;color:#666;margin:-12px 0 16px;">PPOONN STUDIOで開発している他のアプリはこちら。</p>
+
+      <div class="app">
+        <img src="images/recipaIcon.png" alt="レシぱ" class="app-icon">
+        <div class="app-info">
+          <div class="app-name">レシぱ</div>
+          <p class="app-description">食材管理とAIレシピ提案を組み合わせた料理サポートアプリ。冷蔵庫の中身を登録すると、最適なレシピを提案し、買い物リストも自動生成します。</p>
+          <div class="app-links">
+            <a href="https://apps.apple.com/jp/app/%E3%83%AC%E3%82%B7%E3%81%B1-%E9%A3%9F%E6%9D%90%E7%AE%A1%E7%90%86%E3%81%A8%E8%B2%B7%E3%81%84%E7%89%A9%E3%83%A1%E3%83%A2%E3%81%A8%E3%83%AC%E3%82%B7%E3%83%94%E3%81%AE%E8%87%AA%E5%8B%95%E9%80%A3%E6%90%BA/id6754275917" target="_blank" rel="noopener">App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.PPOONN.recipa" target="_blank" rel="noopener">Google Play</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="app">
+        <img src="images/limitedReversiIcon.png" alt="Limited Reversi" class="app-icon">
+        <div class="app-info">
+          <div class="app-name">Limited Reversi</div>
+          <p class="app-description">リバーシゲームにデッキ構築の要素を追加した、戦略性が進化した新感覚ゲーム。</p>
+          <div class="app-links">
+            <a href="https://apps.apple.com/jp/app/limited-reversi-%E3%83%AA%E3%83%9F%E3%83%86%E3%83%83%E3%83%89-%E3%83%AA%E3%83%90%E3%83%BC%E3%82%B7/id6753639395" target="_blank" rel="noopener">App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=k.k.PPOONN.limited_reverai" target="_blank" rel="noopener">Google Play</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="app">
+        <img src="images/jibunnmeisyo_icon.png" alt="じぶん名所図鑑" class="app-icon">
+        <div class="app-info">
+          <div class="app-name">じぶん名所図鑑</div>
+          <p class="app-description">日本各地の世界遺産・城・神社・温泉などの名所への訪問記録を写真付きで残せる旅のコレクションアプリ。</p>
+          <div class="app-links">
+            <a href="https://apps.apple.com/jp/app/%E3%81%98%E3%81%B6%E3%82%93%E5%90%8D%E6%89%80%E5%9B%B3%E9%91%91/id6758913122" target="_blank" rel="noopener">App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=k.k.PPOONN.jibunnmeisyo" target="_blank" rel="noopener">Google Play</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="app">
+        <img src="images/zatsumemo_icon.png" alt="雑メモまとめ" class="app-icon">
+        <div class="app-info">
+          <div class="app-name">雑メモまとめ</div>
+          <p class="app-description">思いついたことをチャット感覚で書き留めるだけで、AIが自動的にカテゴリ分類・整理してくれる新感覚メモアプリ。</p>
+          <div class="app-links">
+            <a href="https://apps.apple.com/jp/app/%E3%81%96%E3%81%A4%E3%83%A1%E3%83%A2%E3%81%BE%E3%81%A8%E3%82%81/id6759522112" target="_blank" rel="noopener">App Store</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="app">
+        <img src="images/HanaLogicon.png" alt="はなログ" class="app-icon">
+        <div class="app-info">
+          <div class="app-name">はなログ</div>
+          <p class="app-description">花粉症の症状・服薬をまとめて管理。薬の飲み忘れ防止から花粉予報、個人傾向の分析まで、つらい花粉シーズンをサポートするアプリ。</p>
+          <div class="app-links">
+            <a href="https://apps.apple.com/jp/app/%E3%81%AF%E3%81%AA%E3%83%AD%E3%82%B0/id6760552588" target="_blank" rel="noopener">App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=k.k.PPOONN.hanalog" target="_blank" rel="noopener">Google Play</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Contact -->
+  <section>
+    <div class="container">
+      <h2>運営者<span>情報</span></h2>
+      <div class="about-box">
+        <dl>
+          <dt>サイト名</dt>
+          <dd>こみぐあい（PPOONN STUDIO）</dd>
+          <dt>運営</dt>
+          <dd>PPOONN STUDIO（個人開発）</dd>
+          <dt>お問い合わせ</dt>
+          <dd><a href="mailto:info@ppoonn.net">info@ppoonn.net</a></dd>
+          <dt>プライバシーポリシー</dt>
+          <dd><a href="komiguai/privacy-policy.html">komiguai プライバシーポリシー</a></dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      <a href="https://komiguai.ppoonn.net/">こみぐあい</a> |
+      <a href="komiguai/privacy-policy.html">プライバシーポリシー</a> |
+      <a href="mailto:info@ppoonn.net">お問い合わせ</a>
+    </p>
+    <p style="margin-top:8px;">© 2026 PPOONN STUDIO | 混雑率データ: 国土交通省 令和6年度(2024)実績</p>
+  </footer>
+
 </body>
 </html>
