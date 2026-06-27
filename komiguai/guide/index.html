@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>こみぐあいの使い方ガイド｜通勤ルートの混雑度を比較する手順</title>
+  <meta name="description" content="無料Webサービス「こみぐあい」の使い方を解説。出発駅・到着駅を入れて混雑率を検索する基本手順から、引越し候補を最大5駅まとめて比較する方法、混雑を避ける活用テクニックまで紹介します。">
+  <meta name="keywords" content="こみぐあい,使い方,通勤,混雑度,比較,引越し,駅,混雑率,検索方法">
+  <link rel="canonical" href="https://ppoonn.net/komiguai/guide/">
+
+  <meta property="og:title" content="こみぐあいの使い方ガイド">
+  <meta property="og:description" content="通勤ルートの混雑度を比較する基本手順から、複数駅のまとめ比較、混雑を避ける活用テクニックまで解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ppoonn.net/komiguai/guide/">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="こみぐあい">
+  <meta name="twitter:card" content="summary">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8729348790986731" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "こみぐあいで通勤ルートの混雑度を比較する方法",
+    "description": "出発駅と到着駅を入力して、首都圏の通勤ルートの混雑率を比較する手順。",
+    "step": [
+      { "@type": "HowToStep", "name": "出発駅と到着駅を入力する", "text": "トップページの検索フォームに通勤の出発駅と到着駅を入力します。" },
+      { "@type": "HowToStep", "name": "混雑度を検索する", "text": "「混雑度を検索」ボタンを押すと、ルート候補が混雑率とともに一覧表示されます。" },
+      { "@type": "HowToStep", "name": "結果を比較・並べ替える", "text": "混雑度順・所要時間順・運賃順で並べ替えて、最適なルートを選びます。" }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif; line-height: 1.9; color: #1a1a2e; background: #f5f5f9; }
+    a { color: #6366f1; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+
+    .site-header { background: #fff; border-bottom: 1px solid #ececf3; position: sticky; top: 0; z-index: 10; }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 56px; flex-wrap: wrap; }
+    .brand { font-weight: 800; font-size: 18px; color: #6366f1; letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 16px; font-size: 13px; font-weight: 600; }
+    .nav-links a { color: #555; }
+
+    .article-head { background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%); color: #fff; padding: 40px 20px; }
+    .article-head .container { padding: 0 20px; }
+    .breadcrumb { font-size: 12px; opacity: 0.85; margin-bottom: 12px; }
+    .breadcrumb a { color: #fff; }
+    .article-head h1 { font-size: 26px; font-weight: 800; line-height: 1.5; }
+    .article-head .lead { font-size: 14px; opacity: 0.92; margin-top: 12px; }
+
+    article { background: #fff; padding: 32px 0; margin-top: 0; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 36px 0 14px; padding-bottom: 8px; border-bottom: 2px solid #f0f0ff; }
+    article h2:first-child { margin-top: 0; }
+    article h3 { font-size: 16px; font-weight: 700; margin: 24px 0 8px; }
+    article p { font-size: 15px; color: #333; margin-bottom: 16px; }
+    article ul { margin: 0 0 16px 1.2em; }
+    article li { font-size: 15px; color: #333; margin-bottom: 6px; }
+
+    .step { display: flex; gap: 14px; align-items: flex-start; background: #fafaff; border-radius: 12px; padding: 18px; margin-bottom: 14px; }
+    .step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 16px; background: #6366f1; color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .step-body h3 { margin: 0 0 6px; font-size: 16px; }
+    .step-body p { margin: 0; font-size: 14px; color: #555; }
+
+    .card { background: #fafaff; border-radius: 12px; padding: 16px 18px; margin-bottom: 12px; border-left: 4px solid #6366f1; }
+    .card h3 { margin: 0 0 6px; font-size: 15px; }
+    .card p { margin: 0; font-size: 14px; color: #555; }
+
+    .cta-box { text-align: center; padding: 32px 20px; background: #f0f0ff; border-radius: 14px; margin: 32px 0 8px; }
+    .cta-box .btn { display: inline-block; background: #6366f1; color: #fff; font-weight: 700; padding: 14px 40px; border-radius: 12px; }
+    .cta-box .btn:hover { text-decoration: none; transform: scale(1.03); }
+
+    .related { background: #fff; padding: 8px 0 32px; }
+    .related h2 { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
+    .related a { display: block; background: #fafaff; border-radius: 10px; padding: 14px 16px; margin-bottom: 8px; font-weight: 600; color: #1a1a2e; }
+    .related a:hover { background: #f0f0ff; text-decoration: none; }
+    .related .arrow { color: #6366f1; }
+
+    .site-footer { text-align: center; padding: 28px 20px 40px; font-size: 12px; color: #888; }
+    .site-footer .footer-links { margin-bottom: 8px; }
+    .site-footer .footer-links a { color: #888; }
+    .site-footer .footer-cta { margin-bottom: 12px; font-size: 14px; }
+
+    @media (max-width: 480px) {
+      .article-head h1 { font-size: 21px; }
+      .nav { height: auto; padding: 8px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav container">
+      <a href="/komiguai/lp/" class="brand">こみぐあい</a>
+      <nav class="nav-links">
+        <a href="/komiguai/lp/">ホーム</a>
+        <a href="/komiguai/guide/">使い方</a>
+        <a href="/komiguai/congestion-info/">混雑率とは</a>
+        <a href="/komiguai/faq/">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="article-head">
+    <div class="container">
+      <div class="breadcrumb"><a href="/komiguai/lp/">こみぐあい</a> ＞ 使い方ガイド</div>
+      <h1>こみぐあいの使い方ガイド</h1>
+      <p class="lead">通勤ルートの混雑度を比較する基本手順から、複数駅のまとめ比較・活用テクニックまで</p>
+    </div>
+  </div>
+
+  <article>
+    <div class="container">
+      <p>「こみぐあい」は、首都圏の通勤ルートの混雑度を比較できる無料のWebサービスです。引越し先の検討や、通勤ルートの見直しにお役立てください。このページでは、基本的な使い方から活用テクニックまでをご紹介します。</p>
+
+      <h2>基本の使い方（3ステップ）</h2>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>出発駅と到着駅を入力する</h3>
+          <p>トップページの検索フォームに、通勤の出発駅と到着駅を入力します。駅名を入力し始めると候補が表示されるので、該当する駅を選択してください。対象エリアは首都圏（東京・神奈川・埼玉・千葉）の主要路線で、JR・私鉄・地下鉄の駅に対応しています。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>混雑度を検索する</h3>
+          <p>駅を選択したら「混雑度を検索」ボタンをタップします。出発駅から到着駅までのルート候補が、混雑度の情報とともに一覧表示されます。各ルートには、混雑率（朝のピーク時間帯）・推定所要時間・運賃・利用路線と乗り換え回数・ルートの地図表示が含まれます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>結果を比較・並べ替える</h3>
+          <p>検索結果は「混雑度順」「所要時間順」「運賃順」で並べ替えることができます。通勤のストレスを減らしたい場合は混雑度順、時間を重視する場合は所要時間順が便利です。混雑率の数値が低いほど車内にゆとりがあり、例えば100%なら座席が埋まり吊り革がほぼ使われている程度、150%を超えると新聞を広げて読むことが難しい状態です。</p>
+        </div>
+      </div>
+
+      <h2>複数の駅をまとめて比較する</h2>
+      <p>引越し先の候補が複数ある場合に便利な機能です。勤務先（到着駅）を固定して、複数の候補駅からの通勤ルートをまとめて比較できます。</p>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>到着駅（勤務先）を入力</h3>
+          <p>まず勤務先の最寄り駅を入力します。これが比較の基準となる駅です。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>比較したい出発駅を追加</h3>
+          <p>引越し候補の駅を最大5つまで追加できます。「＋ 駅を追加」ボタンで候補を増やしていきましょう。例えば「新宿駅への通勤」を基準に、三鷹・国分寺・立川・八王子・町田からのルートを一度に比較できます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>比較結果を確認</h3>
+          <p>各候補駅からのルートが一覧で表示されます。混雑度・所要時間・運賃を駅ごとに比較でき、総合的に最適な引越し先を検討できます。地図上でルートを確認することもできるので、距離感を視覚的に把握するのにも役立ちます。</p>
+        </div>
+      </div>
+
+      <h2>もっと便利に使う活用テクニック</h2>
+
+      <div class="card">
+        <h3>★ お気に入り機能を活用する</h3>
+        <p>よく検索するルートはお気に入りに登録しておくと、次回からワンタップで検索結果を確認できます。検索履歴の★マークをタップするとお気に入りに追加されます。</p>
+      </div>
+      <div class="card">
+        <h3>⇅ 出発駅と到着駅を入れ替える</h3>
+        <p>検索フォームの上下矢印ボタンで、出発駅と到着駅を簡単に入れ替えられます。帰りのルートを確認したい時に便利です。</p>
+      </div>
+      <div class="card">
+        <h3>↗ 結果を共有する</h3>
+        <p>検索結果ページの共有ボタンから、ルート情報をURLで共有できます。家族やパートナーとの引越し先の相談に活用してください。</p>
+      </div>
+      <div class="card">
+        <h3>💡 混雑ランキングを参考にする</h3>
+        <p>トップページには首都圏の混雑路線ランキングが表示されています。引越し先を検討する際、避けるべき路線を把握するのに役立ちます。詳しい混雑率の意味は<a href="/komiguai/congestion-info/">「混雑率について」</a>のページをご覧ください。</p>
+      </div>
+
+      <div class="cta-box">
+        <a href="https://komiguai.ppoonn.net/" class="btn">🔍 さっそく混雑度を検索する</a>
+      </div>
+    </div>
+  </article>
+
+  <div class="related">
+    <div class="container">
+      <h2>関連ページ</h2>
+      <a href="/komiguai/congestion-info/">電車の混雑率とは？目安と避けるコツを解説 <span class="arrow">→</span></a>
+      <a href="/komiguai/faq/">よくある質問（FAQ） <span class="arrow">→</span></a>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-links">
+        <a href="/komiguai/lp/">ホーム</a> ・
+        <a href="/komiguai/guide/">使い方ガイド</a> ・
+        <a href="/komiguai/congestion-info/">混雑率について</a> ・
+        <a href="/komiguai/faq/">よくある質問</a> ・
+        <a href="/komiguai/privacy-policy.html">プライバシーポリシー</a>
+      </p>
+      <p class="footer-cta"><a href="https://komiguai.ppoonn.net/">▶ 実際に混雑度を調べてみる</a></p>
+      <p>© 2026 こみぐあい（PPOONN STUDIO）｜混雑率データ: 国土交通省 令和6年度(2024)実績</p>
+    </div>
+  </footer>
+
+</body>
+</html>

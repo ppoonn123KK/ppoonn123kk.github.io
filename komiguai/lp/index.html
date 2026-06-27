@@ -6,13 +6,13 @@
   <title>首都圏の通勤混雑度を比較 - こみぐあい | 引越し先の混雑ルートを一括チェック</title>
   <meta name="description" content="引越し先の通勤ラッシュがどれくらいか、駅ごとに比較できる無料Webサービス。国土交通省の公式データに基づく混雑率・ピーク時間帯・最混雑区間が一目でわかります。">
   <meta name="keywords" content="引越し,混雑,比較,通勤,混雑率,首都圏,ランキング,電車,ラッシュ,おすすめ,駅">
-  <link rel="canonical" href="https://komiguai.ppoonn.net/lp/">
+  <link rel="canonical" href="https://ppoonn.net/komiguai/lp/">
 
   <!-- OGP -->
   <meta property="og:title" content="こみぐあい - 首都圏通勤混雑度比較">
   <meta property="og:description" content="引越し先の通勤ラッシュを駅ごとに比較。国土交通省の公式データに基づく混雑率情報。">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://komiguai.ppoonn.net/lp/">
+  <meta property="og:url" content="https://ppoonn.net/komiguai/lp/">
   <meta property="og:locale" content="ja_JP">
   <meta property="og:site_name" content="こみぐあい">
   <meta property="og:image" content="https://komiguai.ppoonn.net/ogp.png">
@@ -20,6 +20,9 @@
   <meta name="twitter:title" content="こみぐあい - 首都圏通勤混雑度比較">
   <meta name="twitter:description" content="引越し先の通勤ラッシュを駅ごとに比較。">
   <meta name="twitter:image" content="https://komiguai.ppoonn.net/ogp.png">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8729348790986731" crossorigin="anonymous"></script>
 
   <!-- 構造化データ (JSON-LD) -->
   <script type="application/ld+json">
@@ -49,6 +52,20 @@
     }
     a { color: #6366f1; text-decoration: none; }
     a:hover { text-decoration: underline; }
+
+    /* Nav */
+    .site-header { background: #fff; border-bottom: 1px solid #ececf3; }
+    .nav { max-width: 680px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; height: 56px; flex-wrap: wrap; }
+    .nav .brand { font-weight: 800; font-size: 18px; color: #6366f1; letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 16px; font-size: 13px; font-weight: 600; }
+    .nav-links a { color: #555; }
+
+    /* 関連記事 */
+    .articles-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+    .article-card { background: white; border-radius: 12px; padding: 16px 18px; display: block; color: #1a1a2e; border-left: 4px solid #6366f1; }
+    .article-card:hover { background: #f0f0ff; text-decoration: none; }
+    .article-card .ac-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+    .article-card .ac-desc { font-size: 13px; color: #666; }
 
     /* Hero */
     .hero {
@@ -266,6 +283,19 @@
 </head>
 <body>
 
+  <!-- Nav -->
+  <header class="site-header">
+    <div class="nav">
+      <a href="/komiguai/lp/" class="brand">こみぐあい</a>
+      <nav class="nav-links">
+        <a href="/komiguai/lp/">ホーム</a>
+        <a href="/komiguai/guide/">使い方</a>
+        <a href="/komiguai/congestion-info/">混雑率とは</a>
+        <a href="/komiguai/faq/">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
   <!-- Hero -->
   <div class="hero">
     <h1>こみぐあい</h1>
@@ -416,6 +446,27 @@
     </div>
   </section>
 
+  <!-- 関連記事 -->
+  <section style="background:white;">
+    <div class="container">
+      <h2>もっと<span>知る</span></h2>
+      <div class="articles-grid">
+        <a href="/komiguai/guide/" class="article-card">
+          <div class="ac-title">📖 こみぐあいの使い方ガイド</div>
+          <div class="ac-desc">混雑度を検索する基本手順から、複数駅のまとめ比較、活用テクニックまで解説。</div>
+        </a>
+        <a href="/komiguai/congestion-info/" class="article-card">
+          <div class="ac-title">🚃 電車の混雑率とは？目安と避けるコツ</div>
+          <div class="ac-desc">混雑率100〜200%の意味、首都圏の推移、時差通勤など混雑を避ける具体策を紹介。</div>
+        </a>
+        <a href="/komiguai/faq/" class="article-card">
+          <div class="ac-title">❓ よくある質問（FAQ）</div>
+          <div class="ac-desc">サービス内容・料金、データの出典、使い方、引越し先の選び方などをまとめて回答。</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA bottom -->
   <div class="cta-bottom">
     <div class="container">
@@ -428,10 +479,13 @@
   <!-- Footer -->
   <footer>
     <p>
-      <a href="https://komiguai.ppoonn.net/">こみぐあい</a> |
-      <a href="https://ppoonn.net/komiguai/privacy-policy.html">プライバシーポリシー</a>
+      <a href="/komiguai/lp/">ホーム</a> |
+      <a href="/komiguai/guide/">使い方ガイド</a> |
+      <a href="/komiguai/congestion-info/">混雑率について</a> |
+      <a href="/komiguai/faq/">よくある質問</a> |
+      <a href="/komiguai/privacy-policy.html">プライバシーポリシー</a>
     </p>
-    <p style="margin-top:8px;">© 2026 こみぐあい | 混雑率データ: 国土交通省 令和6年度(2024)実績</p>
+    <p style="margin-top:8px;">© 2026 こみぐあい（PPOONN STUDIO）| 混雑率データ: 国土交通省 令和6年度(2024)実績</p>
   </footer>
 
 </body>
