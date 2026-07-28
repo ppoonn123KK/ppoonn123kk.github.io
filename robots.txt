@@ -1,0 +1,17 @@
+# https://ppoonn.net/ — サイトルートの robots.txt
+# （サブディレクトリに置いた robots.txt はクローラに読まれないので、必ずここに置くこと）
+
+User-agent: *
+Allow: /
+
+# こみぐあい Web アプリ（Flutter SPA）のクライアントサイドルート。
+# GitHub Pages には SPA フォールバックが無いため直アクセスすると 404 になる。
+# アプリの実体は https://komiguai.ppoonn.net/ 側（Firebase の rewrite あり）で動く。
+# ※ /komiguai/guide/ /komiguai/faq/ /komiguai/congestion-info/ は実在する静的記事なので
+#    ここに書いてはいけない（同名の SPA ルートがあるが GitHub Pages が記事へ 301 する）。
+Disallow: /komiguai/results
+Disallow: /komiguai/compare
+Disallow: /komiguai/multi-compare
+Disallow: /komiguai/about
+
+Sitemap: https://ppoonn.net/sitemap.xml
