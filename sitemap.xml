@@ -39,14 +39,78 @@
     <priority>0.3</priority>
   </url>
 
-  <!-- 各アプリのプライバシーポリシー（別リポジトリを apex 配下で配信） -->
+  <!--
+    各アプリの法的ページ（別リポジトリを apex 配下で配信）。
+    旧URL /healthdeck-privacy/ と /healthdeck-terms/ はリダイレクト用ページなので
+    ここには載せない（載せるとサイトマップがリダイレクトを申告することになる）。
+  -->
   <url>
     <loc>https://ppoonn.net/hanalog-privacy-policy/privacy-policy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://ppoonn.net/hanalog-privacy-policy/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://ppoonn.net/healthdeck-privacy-policy/privacy-policy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ppoonn.net/healthdeck-privacy-policy/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ppoonn.net/moonjot-legal/privacy-policy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ppoonn.net/moonjot-legal/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ppoonn.net/zatsumemo-legal/privacy-policy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ppoonn.net/zatsumemo-legal/terms-of-service.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ppoonn.net/recipa-privacy/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ppoonn.net/recipa-privacy/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ppoonn.net/jibunnmeisyo-privacy/privacy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ppoonn.net/jibunnmeisyo-privacy/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ppoonn.net/imited-reversi-privacy/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ppoonn.net/imited-reversi-privacy/terms-of-service.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

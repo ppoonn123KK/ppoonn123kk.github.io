@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+  旧URL https://ppoonn.net/healthdeck-privacy/ 用のリダイレクトページ。
+
+  HealthDeck の App Store 概要には当初この URL を載せていたが、実際のページは
+  /healthdeck-privacy-policy/privacy-policy.html にある（2026-06-18 のコミット
+  e020d42 で本文側だけ修正した）。旧URLは 404 のまま残り、Search Console が
+  「見つかりませんでした（404）」として報告していた。
+
+  App Store 側の記載や外部リンクに旧URLが残っていても利用者が規約に到達できる
+  よう、ここでリダイレクトを維持する。GitHub Pages は 301 を返せないため
+  canonical + meta refresh + location.replace で代替している。消さないこと。
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthDeck プライバシーポリシー</title>
+  <link rel="canonical" href="https://ppoonn.net/healthdeck-privacy-policy/privacy-policy.html">
+  <meta http-equiv="refresh" content="0; url=https://ppoonn.net/healthdeck-privacy-policy/privacy-policy.html">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+           margin: 0; padding: 48px 20px; line-height: 1.8; color: #1a1a2e; }
+    .box { max-width: 560px; margin: 0 auto; }
+    a { color: #6366f1; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>ページが移動しました</h1>
+    <p>HealthDeck のプライバシーポリシーは以下に移動しました。自動で移動しない場合はリンクをタップしてください。</p>
+    <p><a href="https://ppoonn.net/healthdeck-privacy-policy/privacy-policy.html">https://ppoonn.net/healthdeck-privacy-policy/privacy-policy.html</a></p>
+  </div>
+  <script>location.replace("https://ppoonn.net/healthdeck-privacy-policy/privacy-policy.html");</script>
+</body>
+</html>
