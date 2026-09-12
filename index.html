@@ -3,610 +3,773 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>こみぐあい - 首都圏の通勤混雑度を比較 | 引越し先の混雑ルートを一括チェック</title>
-  <meta name="description" content="引越し先の通勤ラッシュがどれくらいか、駅ごとに比較できる無料Webサービス『こみぐあい』公式サイト。国土交通省の公式データに基づく混雑率・ピーク時間帯・最混雑区間が一目でわかります。">
-  <meta name="keywords" content="引越し,混雑,比較,通勤,混雑率,首都圏,ランキング,電車,ラッシュ,おすすめ,駅">
+  <title>PPOONN STUDIO | 日常を少し楽しくするアプリ</title>
+  <meta name="description" content="PPOONN STUDIOは、暮らし・健康・記録・遊びをテーマにアプリをつくる個人開発スタジオです。こみぐあい、Moonjot、HealthDeckなどのWeb・iOS・Androidアプリをご紹介します。">
   <link rel="canonical" href="https://ppoonn.net/">
 
-  <!-- OGP -->
-  <meta property="og:title" content="こみぐあい - 首都圏通勤混雑度比較">
-  <meta property="og:description" content="引越し先の通勤ラッシュを駅ごとに比較。国土交通省の公式データに基づく混雑率情報。">
+  <meta property="og:title" content="PPOONN STUDIO | Apps for everyday life">
+  <meta property="og:description" content="暮らし、健康、記録、遊び。毎日に小さな『いいかも』を届けるアプリスタジオ。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ppoonn.net/">
   <meta property="og:locale" content="ja_JP">
-  <meta property="og:site_name" content="こみぐあい">
-  <meta property="og:image" content="https://komiguai.ppoonn.net/ogp.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="こみぐあい - 首都圏通勤混雑度比較">
-  <meta name="twitter:description" content="引越し先の通勤ラッシュを駅ごとに比較。">
-  <meta name="twitter:image" content="https://komiguai.ppoonn.net/ogp.png">
+  <meta property="og:site_name" content="PPOONN STUDIO">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="PPOONN STUDIO">
+  <meta name="twitter:description" content="日常を少し楽しく、少し便利にするアプリをつくっています。">
+  <meta name="theme-color" content="#11131a">
 
-  <!-- 構造化データ (JSON-LD) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "こみぐあい",
-    "url": "https://komiguai.ppoonn.net",
-    "description": "首都圏の通勤ルートの混雑度を比較できるWebサービス",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "JPY"
-    }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://ppoonn.net/#studio",
+        "name": "PPOONN STUDIO",
+        "url": "https://ppoonn.net/",
+        "email": "info@ppoonn.net",
+        "description": "暮らし・健康・記録・遊びをテーマにアプリを開発する個人スタジオ"
+      },
+      {
+        "@type": "ItemList",
+        "name": "PPOONN STUDIOのアプリ",
+        "numberOfItems": 8,
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"item":{"@type":"WebApplication","name":"こみぐあい","url":"https://komiguai.ppoonn.net/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web"}},
+          {"@type":"ListItem","position":2,"item":{"@type":"MobileApplication","name":"Moonjot","url":"https://apps.apple.com/jp/app/id6768011693","applicationCategory":"LifestyleApplication","operatingSystem":"iOS"}},
+          {"@type":"ListItem","position":3,"item":{"@type":"MobileApplication","name":"HealthDeck","url":"https://apps.apple.com/jp/app/id6777875673","applicationCategory":"HealthApplication","operatingSystem":"iOS"}},
+          {"@type":"ListItem","position":4,"item":{"@type":"MobileApplication","name":"レシぱ","url":"https://apps.apple.com/jp/app/id6754275917","applicationCategory":"LifestyleApplication"}},
+          {"@type":"ListItem","position":5,"item":{"@type":"MobileApplication","name":"はなログ","url":"https://apps.apple.com/jp/app/id6760552588","applicationCategory":"HealthApplication"}},
+          {"@type":"ListItem","position":6,"item":{"@type":"MobileApplication","name":"じぶん名所図鑑","url":"https://apps.apple.com/jp/app/id6758913122","applicationCategory":"TravelApplication"}},
+          {"@type":"ListItem","position":7,"item":{"@type":"MobileApplication","name":"雑メモまとめ","url":"https://apps.apple.com/jp/app/id6759522112","applicationCategory":"ProductivityApplication"}},
+          {"@type":"ListItem","position":8,"item":{"@type":"MobileApplication","name":"Limited Reversi","url":"https://apps.apple.com/jp/app/id6753639395","applicationCategory":"GameApplication"}}
+        ]
+      }
+    ]
   }
   </script>
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --ink: #11131a;
+      --muted: #656a78;
+      --line: #dfe2ea;
+      --paper: #f5f7fb;
+      --white: #ffffff;
+      --violet: #6161f6;
+      --violet-soft: #ededff;
+      --yellow: #f4d64f;
+      --coral: #ff6b6b;
+      --radius: 26px;
+      --shadow: 0 22px 60px rgba(17, 19, 26, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-      line-height: 1.8;
-      color: #1a1a2e;
-      background: #f5f5f9;
-    }
-    a { color: #6366f1; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* Hero */
-    .hero {
-      background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
-      color: white;
-      text-align: center;
-      padding: 60px 20px 48px;
-    }
-    .hero h1 {
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      margin-bottom: 12px;
-    }
-    .hero p {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
       font-size: 16px;
-      opacity: 0.9;
-      max-width: 480px;
-      margin: 0 auto 28px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
     }
-    .cta-btn {
-      display: inline-block;
-      background: white;
-      color: #6366f1;
-      font-size: 16px;
-      font-weight: 700;
-      padding: 14px 40px;
-      border-radius: 12px;
-      transition: transform 0.2s;
-    }
-    .cta-btn:hover { transform: scale(1.05); text-decoration: none; }
 
-    /* Container */
-    .container {
-      max-width: 680px;
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .skip-link {
+      position: fixed;
+      top: 8px;
+      left: 8px;
+      z-index: 100;
+      padding: 10px 16px;
+      color: var(--white);
+      background: var(--ink);
+      border-radius: 10px;
+      transform: translateY(-150%);
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(245, 247, 251, 0.88);
+      border-bottom: 1px solid rgba(223, 226, 234, 0.85);
+      backdrop-filter: blur(18px);
+    }
+
+    .header-inner,
+    .shell {
+      width: min(1180px, calc(100% - 40px));
       margin: 0 auto;
-      padding: 0 20px;
     }
 
-    /* Section */
-    section {
-      padding: 40px 0;
-    }
-    section h2 {
-      font-size: 20px;
-      font-weight: 800;
-      margin-bottom: 20px;
-      color: #1a1a2e;
-    }
-    section h2 span {
-      color: #6366f1;
+    .header-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
     }
 
-    /* Pain points */
-    .pain {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 12px;
-      border-left: 4px solid #6366f1;
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 850;
+      letter-spacing: 0.04em;
     }
-    .pain-title {
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: var(--ink);
+      border-radius: 11px;
+      font-size: 16px;
+      letter-spacing: -0.06em;
+    }
+
+    nav { display: flex; align-items: center; gap: 26px; }
+
+    nav a {
+      color: #3f4350;
+      text-decoration: none;
+      font-size: 14px;
       font-weight: 700;
-      font-size: 15px;
-      margin-bottom: 4px;
-    }
-    .pain-desc {
-      font-size: 13px;
-      color: #666;
     }
 
-    /* Features */
-    .feature {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 12px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
+    nav a:hover { color: var(--violet); }
+
+    .hero {
+      padding: 70px 0 56px;
     }
-    .feature-icon {
-      width: 44px;
-      height: 44px;
-      background: #f0f0ff;
-      border-radius: 12px;
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(380px, 0.9fr);
+      gap: 52px;
+      align-items: center;
+    }
+
+    .eyebrow,
+    .section-kicker {
+      margin: 0 0 14px;
+      color: var(--violet);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(46px, 7vw, 88px);
+      line-height: 1.03;
+      letter-spacing: -0.065em;
+      font-weight: 900;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--violet);
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      margin: 26px 0 0;
+      color: #4e5361;
+      font-size: 18px;
+      line-height: 1.9;
+    }
+
+    .hero-actions,
+    .app-actions {
       display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      flex-shrink: 0;
-    }
-    .feature-title {
-      font-weight: 700;
-      font-size: 15px;
-      margin-bottom: 4px;
-    }
-    .feature-desc {
-      font-size: 13px;
-      color: #666;
+      gap: 8px;
+      padding: 11px 20px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
     }
 
-    /* Ranking */
-    .rank-list { list-style: none; }
-    .rank-item {
-      background: white;
-      border-radius: 10px;
-      padding: 14px 16px;
-      margin-bottom: 8px;
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(17, 19, 26, 0.18);
+    }
+
+    .button.secondary { background: transparent; color: var(--ink); }
+    .button.secondary:hover { background: var(--white); }
+    .button.small { min-height: 42px; padding: 8px 16px; font-size: 13px; }
+
+    .hero-art {
+      position: relative;
+      min-height: 480px;
+      overflow: hidden;
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 25% 18%, rgba(255,255,255,0.24), transparent 24%),
+        linear-gradient(145deg, #161924 0%, #272c3f 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-art::before {
+      content: "PPOONN";
+      position: absolute;
+      right: -12px;
+      bottom: -44px;
+      color: rgba(255, 255, 255, 0.05);
+      font-size: 112px;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+    }
+
+    .orbit {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 50%;
+    }
+
+    .orbit.one { width: 370px; height: 370px; top: 50px; left: 42px; }
+    .orbit.two { width: 250px; height: 250px; top: 110px; left: 102px; }
+
+    .hero-icon {
+      position: absolute;
+      width: 146px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 8px solid rgba(255,255,255,0.9);
+      border-radius: 34px;
+      box-shadow: 0 20px 42px rgba(0,0,0,0.30);
+    }
+
+    .hero-icon.komiguai { top: 58px; left: 58px; transform: rotate(-7deg); }
+    .hero-icon.moonjot { top: 82px; right: 48px; transform: rotate(7deg); }
+    .hero-icon.healthdeck { bottom: 52px; left: 50%; transform: translateX(-50%) rotate(-2deg); }
+
+    .hero-label {
+      position: absolute;
+      padding: 7px 13px;
+      background: var(--yellow);
+      border-radius: 999px;
+      color: #22230f;
+      font-size: 12px;
+      font-weight: 850;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.20);
+    }
+
+    .hero-label.top { top: 28px; right: 28px; }
+    .hero-label.bottom { bottom: 24px; left: 24px; background: var(--white); }
+
+    section { padding: 76px 0; }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading h2 {
+      max-width: 680px;
+      margin: 0;
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.15;
+      letter-spacing: -0.045em;
+    }
+
+    .section-heading > p {
+      max-width: 360px;
+      margin: 0 0 7px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .featured-list { display: grid; gap: 24px; }
+
+    .featured-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 34px;
+      align-items: center;
+      overflow: hidden;
+      padding: 34px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 34px rgba(17, 19, 26, 0.055);
+    }
+
+    .featured-card:nth-child(even) { background: #11131a; color: var(--white); border-color: #11131a; }
+    .featured-card:nth-child(even) .app-lead,
+    .featured-card:nth-child(even) .feature-list { color: #c9cbd3; }
+    .featured-card:nth-child(even) .button.secondary { color: var(--white); border-color: #707586; }
+    .featured-card:nth-child(even) .button.secondary:hover { background: #272b39; }
+
+    .featured-visual {
+      position: relative;
+      min-height: 220px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 24px;
+      background: var(--violet-soft);
+    }
+
+    .featured-card:nth-child(2) .featured-visual { background: #252b4b; }
+    .featured-card:nth-child(3) .featured-visual { background: #fff3dd; }
+
+    .featured-visual::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border: 1px solid rgba(97,97,246,0.24);
+      border-radius: 50%;
+    }
+
+    .featured-icon {
+      position: relative;
+      z-index: 1;
+      width: 138px;
+      height: 138px;
+      object-fit: cover;
+      border-radius: 31px;
+      box-shadow: 0 20px 35px rgba(17,19,26,0.22);
+    }
+
+    .app-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 10px;
+      color: #3e4260;
+      background: #eef0f7;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .featured-card:nth-child(even) .pill { color: #e8e9ee; background: #303544; }
+
+    .app-title {
+      margin: 0;
+      font-size: clamp(27px, 3vw, 40px);
+      line-height: 1.2;
+      letter-spacing: -0.04em;
+    }
+
+    .app-lead { margin: 12px 0 0; color: #555a68; font-size: 16px; }
+
+    .feature-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px 18px;
+      margin: 18px 0 0;
+      padding: 0;
+      color: #474c59;
+      list-style: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .feature-list li::before { content: "•"; margin-right: 7px; color: var(--violet); }
+    .featured-card:nth-child(even) .feature-list li::before { color: var(--yellow); }
+
+    .catalog { background: var(--white); }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .app-card {
+      display: grid;
+      grid-template-columns: 94px minmax(0, 1fr);
+      gap: 20px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--paper);
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .app-card:hover {
+      transform: translateY(-3px);
+      border-color: #b9bdfb;
+      box-shadow: 0 14px 34px rgba(17, 19, 26, 0.08);
+    }
+
+    .app-card img {
+      width: 94px;
+      height: 94px;
+      object-fit: cover;
+      border-radius: 22px;
+      box-shadow: 0 10px 24px rgba(17,19,26,0.14);
+    }
+
+    .app-card h3 { margin: 1px 0 5px; font-size: 20px; line-height: 1.35; }
+    .app-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 13px;
+      color: var(--violet);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .text-link:hover { text-decoration: underline; }
+
+    .studio-panel {
+      overflow: hidden;
+      padding: 54px;
+      color: var(--white);
+      background: var(--ink);
+      border-radius: 34px;
+    }
+
+    .studio-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 54px;
+      align-items: start;
+    }
+
+    .studio-panel h2 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 1.12;
+      letter-spacing: -0.05em;
+    }
+
+    .studio-panel h2 span { color: var(--yellow); }
+
+    .studio-copy { margin: 22px 0 0; color: #c7cad4; font-size: 17px; }
+
+    .principles { display: grid; gap: 12px; }
+
+    .principle {
+      padding: 18px 20px;
+      border: 1px solid #343847;
+      border-radius: 18px;
+      background: #1a1d27;
+    }
+
+    .principle strong { display: block; margin-bottom: 4px; font-size: 15px; }
+    .principle span { color: #aeb2bf; font-size: 13px; }
+
+    .contact-row {
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 36px 0 0;
+      margin-top: 36px;
+      border-top: 1px solid #353947;
     }
-    .rank-num {
-      font-size: 18px;
-      font-weight: 800;
-      color: #6366f1;
-      width: 28px;
-      text-align: center;
-    }
-    .rank-info { flex: 1; }
-    .rank-line {
-      font-size: 14px;
-      font-weight: 700;
-    }
-    .rank-section {
-      font-size: 12px;
-      color: #888;
-    }
-    .rank-rate {
-      font-size: 14px;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 6px;
-    }
-    .rate-red { background: #fef2f2; color: #ef4444; }
-    .rate-orange { background: #fff7ed; color: #f97316; }
-    .rate-yellow { background: #fefce8; color: #ca8a04; }
 
-    /* Popular routes */
-    .routes-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-    .route-link {
-      background: white;
-      border-radius: 10px;
-      padding: 12px 14px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #1a1a2e;
-      display: block;
-      transition: background 0.2s;
-    }
-    .route-link:hover {
-      background: #f0f0ff;
-      text-decoration: none;
-    }
-    .route-arrow { color: #6366f1; margin: 0 4px; }
+    .contact-row p { margin: 0; color: #c7cad4; font-size: 14px; }
+    .contact-row a { color: var(--white); font-weight: 800; }
 
-    /* Tips */
-    .tip {
-      background: #f0f0ff;
-      border-radius: 10px;
-      padding: 16px;
-      margin-bottom: 8px;
-      font-size: 13px;
-      color: #444;
-      border: 1px solid #e0e0ff;
-    }
-    .tip strong { color: #6366f1; }
+    .site-footer { padding: 34px 0 44px; }
 
-    /* CTA bottom */
-    .cta-bottom {
-      text-align: center;
-      padding: 48px 20px;
-      background: white;
-    }
-    .cta-bottom h2 {
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
-    .cta-bottom p {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 24px;
-    }
-    .cta-btn-lg {
-      display: inline-block;
-      background: #6366f1;
-      color: white;
-      font-size: 18px;
-      font-weight: 700;
-      padding: 16px 48px;
-      border-radius: 12px;
-      transition: transform 0.2s;
-    }
-    .cta-btn-lg:hover { transform: scale(1.05); text-decoration: none; }
-
-    /* Other apps */
-    .other-apps {
-      background: #f5f5f9;
-      padding: 40px 0;
-    }
-    .app {
+    .footer-inner {
       display: flex;
-      gap: 16px;
-      padding: 16px;
-      background: white;
-      border-radius: 12px;
-      margin-bottom: 10px;
-      align-items: flex-start;
-    }
-    .app-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 12px;
-      flex-shrink: 0;
-      object-fit: cover;
-    }
-    .app-info { flex: 1; min-width: 0; }
-    .app-name {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .app-description {
-      color: #666;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--muted);
       font-size: 13px;
-      margin-bottom: 10px;
-      line-height: 1.6;
-    }
-    .app-links {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .app-links a {
-      color: #555;
-      text-decoration: none;
-      font-size: 12px;
-      padding: 4px 12px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      background: white;
-    }
-    .app-links a:hover {
-      background: #f0f0ff;
-      border-color: #6366f1;
-      color: #6366f1;
-      text-decoration: none;
     }
 
-    /* About / Contact */
-    .about-box {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      font-size: 13px;
-      color: #555;
-    }
-    .about-box dt {
-      font-weight: 700;
-      color: #1a1a2e;
-      margin-top: 8px;
-    }
-    .about-box dt:first-child { margin-top: 0; }
-    .about-box dd { margin-bottom: 4px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+    .footer-links a { text-decoration: none; }
+    .footer-links a:hover { color: var(--violet); }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 24px 20px 40px;
-      font-size: 12px;
-      color: #888;
-    }
-    footer a { color: #888; margin: 0 6px; }
+    :focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; }
 
-    @media (max-width: 480px) {
-      .hero h1 { font-size: 22px; }
-      .routes-grid { grid-template-columns: 1fr; }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-art { min-height: 430px; }
+      .section-heading { align-items: start; flex-direction: column; gap: 12px; }
+      .studio-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .header-inner,
+      .shell { width: min(100% - 28px, 1180px); }
+      nav { gap: 15px; }
+      nav a:nth-child(2) { display: none; }
+      .hero { padding: 48px 0 36px; }
+      .hero h1 { font-size: clamp(44px, 15vw, 66px); }
+      .hero-copy { font-size: 16px; }
+      .hero-art { min-height: 350px; }
+      .hero-icon { width: 112px; border-width: 6px; border-radius: 27px; }
+      .hero-icon.komiguai { top: 48px; left: 30px; }
+      .hero-icon.moonjot { top: 68px; right: 26px; }
+      .hero-icon.healthdeck { bottom: 42px; }
+      .orbit.one { width: 300px; height: 300px; left: 16px; }
+      section { padding: 56px 0; }
+      .featured-card { grid-template-columns: 1fr; padding: 20px; gap: 24px; }
+      .featured-visual { min-height: 190px; }
+      .app-grid { grid-template-columns: 1fr; }
+      .app-card { grid-template-columns: 76px minmax(0, 1fr); padding: 18px; gap: 16px; }
+      .app-card img { width: 76px; height: 76px; border-radius: 18px; }
+      .studio-panel { padding: 30px 24px; }
+      .contact-row,
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
     }
   </style>
 
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8729348790986731"
-     crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8729348790986731" crossorigin="anonymous"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">本文へ移動</a>
 
-  <!-- Hero -->
-  <div class="hero">
-    <h1>こみぐあい</h1>
-    <p>首都圏の通勤ルートの混雑度を比較して<br>最適な引越し先を見つけよう</p>
-    <a href="https://komiguai.ppoonn.net/" class="cta-btn">🔍 混雑度を調べる</a>
-  </div>
-
-  <!-- Pain points -->
-  <section>
-    <div class="container">
-      <h2>こんな<span>悩み</span>ありませんか？</h2>
-      <div class="pain">
-        <div class="pain-title">😰 引越し先の通勤ラッシュが不安</div>
-        <div class="pain-desc">住んでみないと混雑度がわからない…朝のピーク時間はどれくらい混むの？</div>
-      </div>
-      <div class="pain">
-        <div class="pain-title">🤔 候補が複数あって決められない</div>
-        <div class="pain-desc">練馬と板橋と柏、どの駅が一番通勤が楽？家賃だけじゃ決められない</div>
-      </div>
-      <div class="pain">
-        <div class="pain-title">📊 信頼できるデータが欲しい</div>
-        <div class="pain-desc">口コミや感覚ではなく、公式なデータで比較したい</div>
-      </div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="PPOONN STUDIO トップ">
+        <span class="brand-mark" aria-hidden="true">P.</span>
+        <span>PPOONN STUDIO</span>
+      </a>
+      <nav aria-label="メインナビゲーション">
+        <a href="#featured">注目のアプリ</a>
+        <a href="#all-apps">すべてのアプリ</a>
+        <a href="#studio">スタジオについて</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <!-- Features -->
-  <section style="background:white;">
-    <div class="container">
-      <h2>こみぐあいで<span>解決</span></h2>
-      <div class="feature">
-        <div class="feature-icon">🔍</div>
+  <main id="main">
+    <section class="hero">
+      <div class="shell hero-grid">
         <div>
-          <div class="feature-title">ルートの混雑度を検索</div>
-          <div class="feature-desc">出発駅と到着駅を入力するだけ。混雑率・ピーク時間帯・最混雑区間がすぐわかります。</div>
-        </div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">📊</div>
-        <div>
-          <div class="feature-title">複数の駅をまとめて比較</div>
-          <div class="feature-desc">引越し候補を最大5駅まで登録し、通勤の快適さを一覧で比較。おすすめ度も表示。</div>
-        </div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">🗺️</div>
-        <div>
-          <div class="feature-title">地図で位置関係を確認</div>
-          <div class="feature-desc">候補駅の位置と通勤ルートを地図上に表示。路線カラーでルートの違いが一目瞭然。</div>
-        </div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">✅</div>
-        <div>
-          <div class="feature-title">国土交通省の公式データ</div>
-          <div class="feature-desc">令和6年度の実績データに基づく信頼性の高い混雑率情報。首都圏の主要路線をカバー。</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Ranking -->
-  <section>
-    <div class="container">
-      <h2>首都圏<span>混雑路線ランキング</span> TOP10</h2>
-      <p style="font-size:13px;color:#666;margin:-12px 0 16px;">朝のピーク1時間の混雑率（令和6年度 国土交通省実績）</p>
-      <ol class="rank-list">
-        <li class="rank-item">
-          <div class="rank-num">1</div>
-          <div class="rank-info"><div class="rank-line">JR中央線快速</div><div class="rank-section">中野→新宿</div></div>
-          <div class="rank-rate rate-red">161%</div>
-        </li>
-        <li class="rank-item">
-          <div class="rank-num">2</div>
-          <div class="rank-info"><div class="rank-line">大江戸線</div><div class="rank-section">中井→東中野</div></div>
-          <div class="rank-rate rate-orange">155%</div>
-        </li>
-        <li class="rank-item">
-          <div class="rank-num">3</div>
-          <div class="rank-info"><div class="rank-line">東西線</div><div class="rank-section">木場→門前仲町</div></div>
-          <div class="rank-rate rate-orange">150%</div>
-        </li>
-        <li class="rank-item">
-          <div class="rank-num">4</div>
-          <div class="rank-info"><div class="rank-line">銀座線</div><div class="rank-section">赤坂見附→溜池山王</div></div>
-          <div class="rank-rate rate-orange">147%</div>
-        </li>
-        <li class="rank-item">
-          <div class="rank-num">5</div>
-          <div class="rank-info"><div class="rank-line">丸ノ内線</div><div class="rank-section">新大塚→茗荷谷</div></div>
-          <div class="rank-rate rate-orange">146%</div>
-        </li>
-        <li class="rank-item">
-          <div class="rank-num">6</div>
-          <div class="rank-info"><div class="rank-line">JR南武線</div><div class="rank-section">武蔵中原→武蔵小杉</div></div>
-          <div class="rank-rate rate-orange">145%</div>
-        </li>
-        <li class="rank-item">
-          <div class="rank-num">7</div>
-          <div class="rank-info"><div class="rank-line">日暮里舎人ライナー</div><div class="rank-section">赤土小学校前→西日暮里</div></div>
-          <div class="rank-rate rate-orange">144%</div>
-        </li>
-        <li class="rank-item">
-          <div class="rank-num">8</div>
-          <div class="rank-info"><div class="rank-line">つくばエクスプレス</div><div class="rank-section">青井→北千住</div></div>
-          <div class="rank-rate rate-orange">141%</div>
-        </li>
-        <li class="rank-item">
-          <div class="rank-num">9</div>
-          <div class="rank-info"><div class="rank-line">JR山手線</div><div class="rank-section">新大久保→新宿</div></div>
-          <div class="rank-rate rate-yellow">139%</div>
-        </li>
-        <li class="rank-item">
-          <div class="rank-num">10</div>
-          <div class="rank-info"><div class="rank-line">西武新宿線</div><div class="rank-section">下落合→高田馬場</div></div>
-          <div class="rank-rate rate-yellow">137%</div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- Popular routes -->
-  <section style="background:white;">
-    <div class="container">
-      <h2>よく比較される<span>通勤ルート</span></h2>
-      <div class="routes-grid">
-        <a href="https://komiguai.ppoonn.net/results?from=%E7%B7%B4%E9%A6%AC&to=%E6%96%B0%E5%AE%BF" class="route-link">練馬<span class="route-arrow">→</span>新宿</a>
-        <a href="https://komiguai.ppoonn.net/results?from=%E6%B1%A0%E8%A2%8B&to=%E6%9D%B1%E4%BA%AC" class="route-link">池袋<span class="route-arrow">→</span>東京</a>
-        <a href="https://komiguai.ppoonn.net/results?from=%E6%A8%AA%E6%B5%9C&to=%E5%93%81%E5%B7%9D" class="route-link">横浜<span class="route-arrow">→</span>品川</a>
-        <a href="https://komiguai.ppoonn.net/results?from=%E6%B8%8B%E8%B0%B7&to=%E5%A4%A7%E6%89%8B%E7%94%BA" class="route-link">渋谷<span class="route-arrow">→</span>大手町</a>
-        <a href="https://komiguai.ppoonn.net/results?from=%E5%90%89%E7%A5%A5%E5%AF%BA&to=%E6%9D%B1%E4%BA%AC" class="route-link">吉祥寺<span class="route-arrow">→</span>東京</a>
-        <a href="https://komiguai.ppoonn.net/results?from=%E6%AD%A6%E8%94%B5%E5%B0%8F%E6%9D%89&to=%E6%B8%8B%E8%B0%B7" class="route-link">武蔵小杉<span class="route-arrow">→</span>渋谷</a>
-        <a href="https://komiguai.ppoonn.net/results?from=%E5%8C%97%E5%8D%83%E4%BD%8F&to=%E5%A4%A7%E5%B4%8E" class="route-link">北千住<span class="route-arrow">→</span>大崎</a>
-        <a href="https://komiguai.ppoonn.net/results?from=%E5%A4%A7%E5%AE%AE&to=%E6%9D%B1%E4%BA%AC" class="route-link">大宮<span class="route-arrow">→</span>東京</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tips -->
-  <section>
-    <div class="container">
-      <h2>知っておきたい<span>混雑の目安</span></h2>
-      <div class="tip"><strong>混雑率100%</strong> — 定員ぴったり。座席が埋まり、つり革・ドア付近の柱にもたれかかる人がいる程度。</div>
-      <div class="tip"><strong>混雑率130%</strong> — 新聞を広げて読める。スマホ操作も可能。多くの人が立っている状態。</div>
-      <div class="tip"><strong>混雑率150%</strong> — 週刊誌など小さめの印刷物なら読める。肩が触れ合う程度。</div>
-      <div class="tip"><strong>混雑率180%</strong> — 体が圧迫される。身動きが取れない状態。</div>
-      <p style="font-size:12px;color:#888;margin-top:8px;">※ 国土交通省の混雑率の目安に基づく</p>
-    </div>
-  </section>
-
-  <!-- CTA bottom -->
-  <div class="cta-bottom">
-    <div class="container">
-      <h2>引越し先の混雑度、調べてみませんか？</h2>
-      <p>無料で使えます。会員登録も不要です。</p>
-      <a href="https://komiguai.ppoonn.net/" class="cta-btn-lg">混雑度を調べる →</a>
-    </div>
-  </div>
-
-  <!-- 関連コンテンツ -->
-  <section style="background:white;">
-    <div class="container">
-      <h2>こみぐあいを<span>もっと知る</span></h2>
-      <p style="font-size:13px;color:#666;margin:-12px 0 16px;">使い方や混雑率の基礎知識、よくある質問をまとめています。</p>
-      <a href="komiguai/guide/" class="route-link" style="display:block;margin-bottom:8px;">📖 こみぐあいの使い方ガイド<span class="route-arrow"> →</span></a>
-      <a href="komiguai/congestion-info/" class="route-link" style="display:block;margin-bottom:8px;">🚃 電車の混雑率とは？目安と避けるコツ<span class="route-arrow"> →</span></a>
-      <a href="komiguai/faq/" class="route-link" style="display:block;margin-bottom:8px;">❓ よくある質問（FAQ）<span class="route-arrow"> →</span></a>
-    </div>
-  </section>
-
-  <!-- Other apps -->
-  <section class="other-apps">
-    <div class="container">
-      <h2>運営者の<span>他のアプリ</span></h2>
-      <p style="font-size:13px;color:#666;margin:-12px 0 16px;">PPOONN STUDIOで開発している他のアプリはこちら。</p>
-
-      <div class="app">
-        <img src="images/recipaIcon.png" alt="レシぱ" class="app-icon">
-        <div class="app-info">
-          <div class="app-name">レシぱ</div>
-          <p class="app-description">食材管理とAIレシピ提案を組み合わせた料理サポートアプリ。冷蔵庫の中身を登録すると、最適なレシピを提案し、買い物リストも自動生成します。</p>
-          <div class="app-links">
-            <a href="https://apps.apple.com/jp/app/%E3%83%AC%E3%82%B7%E3%81%B1-%E9%A3%9F%E6%9D%90%E7%AE%A1%E7%90%86%E3%81%A8%E8%B2%B7%E3%81%84%E7%89%A9%E3%83%A1%E3%83%A2%E3%81%A8%E3%83%AC%E3%82%B7%E3%83%94%E3%81%AE%E8%87%AA%E5%8B%95%E9%80%A3%E6%90%BA/id6754275917" target="_blank" rel="noopener">App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=com.PPOONN.recipa" target="_blank" rel="noopener">Google Play</a>
+          <p class="eyebrow">Independent app studio</p>
+          <h1>毎日に、小さな<span>「いいかも」を。</span></h1>
+          <p class="hero-copy">PPOONN STUDIOは、暮らし・健康・記録・遊びをテーマに、毎日使いたくなるアプリをつくる個人開発スタジオです。</p>
+          <div class="hero-actions">
+            <a class="button" href="#featured">アプリを見る <span aria-hidden="true">↓</span></a>
+            <a class="button secondary" href="mailto:info@ppoonn.net">お問い合わせ</a>
           </div>
         </div>
-      </div>
-
-      <div class="app">
-        <img src="images/limitedReversiIcon.png" alt="Limited Reversi" class="app-icon">
-        <div class="app-info">
-          <div class="app-name">Limited Reversi</div>
-          <p class="app-description">リバーシゲームにデッキ構築の要素を追加した、戦略性が進化した新感覚ゲーム。</p>
-          <div class="app-links">
-            <a href="https://apps.apple.com/jp/app/limited-reversi-%E3%83%AA%E3%83%9F%E3%83%86%E3%83%83%E3%83%89-%E3%83%AA%E3%83%90%E3%83%BC%E3%82%B7/id6753639395" target="_blank" rel="noopener">App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=k.k.PPOONN.limited_reverai" target="_blank" rel="noopener">Google Play</a>
-          </div>
+        <div class="hero-art" aria-label="こみぐあい、Moonjot、HealthDeckのアプリアイコン">
+          <span class="orbit one" aria-hidden="true"></span>
+          <span class="orbit two" aria-hidden="true"></span>
+          <img class="hero-icon komiguai" src="images/apps/komiguai.png" alt="こみぐあい" width="512" height="512">
+          <img class="hero-icon moonjot" src="images/apps/moonjot.png" alt="Moonjot" width="512" height="512">
+          <img class="hero-icon healthdeck" src="images/apps/healthdeck.png" alt="HealthDeck" width="512" height="512">
+          <span class="hero-label top">WEB · iOS · Android</span>
+          <span class="hero-label bottom">8 products and growing</span>
         </div>
       </div>
+    </section>
 
-      <div class="app">
-        <img src="images/jibunnmeisyo_icon.png" alt="じぶん名所図鑑" class="app-icon">
-        <div class="app-info">
-          <div class="app-name">じぶん名所図鑑</div>
-          <p class="app-description">日本各地の世界遺産・城・神社・温泉などの名所への訪問記録を写真付きで残せる旅のコレクションアプリ。</p>
-          <div class="app-links">
-            <a href="https://apps.apple.com/jp/app/%E3%81%98%E3%81%B6%E3%82%93%E5%90%8D%E6%89%80%E5%9B%B3%E9%91%91/id6758913122" target="_blank" rel="noopener">App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=k.k.PPOONN.jibunnmeisyo" target="_blank" rel="noopener">Google Play</a>
+    <section id="featured" aria-labelledby="featured-title">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Featured releases</p>
+            <h2 id="featured-title">いま届けたい、3つのアプリ</h2>
           </div>
+          <p>移動、日記、健康習慣。日常の小さな困りごとに、ひとつずつ向き合いました。</p>
+        </div>
+
+        <div class="featured-list">
+          <article class="featured-card">
+            <div class="featured-visual">
+              <img class="featured-icon" src="images/apps/komiguai.png" alt="こみぐあいのアイコン" width="512" height="512">
+            </div>
+            <div>
+              <div class="app-meta"><span class="pill">Web</span><span class="pill">移動・暮らし</span><span class="pill">無料</span></div>
+              <h3 class="app-title">こみぐあい</h3>
+              <p class="app-lead">引越し候補や通勤ルートを、電車の混雑率まで含めて比較できるWebサービス。国土交通省の令和7年度実績データを使い、ピーク時間や最混雑区間も確認できます。</p>
+              <ul class="feature-list">
+                <li>駅名・かな・ローマ字検索</li>
+                <li>最大5駅を一括比較</li>
+                <li>結果を画像で共有</li>
+              </ul>
+              <div class="app-actions">
+                <a class="button small" href="https://komiguai.ppoonn.net/">混雑度を調べる <span aria-hidden="true">↗</span></a>
+                <a class="button secondary small" href="komiguai/guide/">使い方を見る</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="featured-card">
+            <div class="featured-visual">
+              <img class="featured-icon" src="images/apps/moonjot.png" alt="Moonjotのアイコン" width="512" height="512" loading="lazy">
+            </div>
+            <div>
+              <div class="app-meta"><span class="pill">iPhone · iPad</span><span class="pill">日記・ライフスタイル</span></div>
+              <h3 class="app-title">Moonjot</h3>
+              <p class="app-lead">今夜の月と天気を眺めながら、120字までのひとことを残す日記アプリ。約30日後、同じ月相の夜に過去の自分の言葉が返ってきます。</p>
+              <ul class="feature-list">
+                <li>月齢カレンダー</li>
+                <li>ホーム画面ウィジェット</li>
+                <li>日記は端末内に保存</li>
+              </ul>
+              <div class="app-actions">
+                <a class="button small" href="https://apps.apple.com/jp/app/id6768011693" target="_blank" rel="noopener">App Storeで見る <span aria-hidden="true">↗</span></a>
+                <a class="button secondary small" href="https://ppoonn.net/moonjot-legal/privacy-policy.html">プライバシー</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="featured-card">
+            <div class="featured-visual">
+              <img class="featured-icon" src="images/apps/healthdeck.png" alt="HealthDeckのアイコン" width="512" height="512" loading="lazy">
+            </div>
+            <div>
+              <div class="app-meta"><span class="pill">iPhone · iPad</span><span class="pill">ヘルスケア</span><span class="pill">カード収集</span></div>
+              <h3 class="app-title">HealthDeck</h3>
+              <p class="app-lead">1分以内の小さな健康習慣をカードで引いて、実践して、集めるアプリ。タスク管理ではなく、コレクションが育つ楽しさで継続を支えます。</p>
+              <ul class="feature-list">
+                <li>毎日1枚の習慣カード</li>
+                <li>自作カードと図鑑</li>
+                <li>フレンドとのカード交換</li>
+              </ul>
+              <div class="app-actions">
+                <a class="button small" href="https://apps.apple.com/jp/app/id6777875673" target="_blank" rel="noopener">App Storeで見る <span aria-hidden="true">↗</span></a>
+                <a class="button secondary small" href="https://ppoonn.net/healthdeck-privacy-policy/privacy-policy.html">プライバシー</a>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
+    </section>
 
-      <div class="app">
-        <img src="images/zatsumemo_icon.png" alt="雑メモまとめ" class="app-icon">
-        <div class="app-info">
-          <div class="app-name">雑メモまとめ</div>
-          <p class="app-description">思いついたことをチャット感覚で書き留めるだけで、AIが自動的にカテゴリ分類・整理してくれる新感覚メモアプリ。</p>
-          <div class="app-links">
-            <a href="https://apps.apple.com/jp/app/%E3%81%96%E3%81%A4%E3%83%A1%E3%83%A2%E3%81%BE%E3%81%A8%E3%82%81/id6759522112" target="_blank" rel="noopener">App Store</a>
+    <section id="all-apps" class="catalog" aria-labelledby="catalog-title">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">App collection</p>
+            <h2 id="catalog-title">暮らしのいろいろを、アプリに。</h2>
           </div>
+          <p>食材管理から花粉対策、旅の記録、メモ、ゲームまで。PPOONN STUDIOの公開中アプリです。</p>
+        </div>
+
+        <div class="app-grid">
+          <article class="app-card">
+            <img src="images/apps/recipa.png" alt="レシぱのアイコン" width="512" height="512" loading="lazy">
+            <div>
+              <h3>レシぱ</h3>
+              <p>食材の期限管理、買い物メモ、AIレシピ提案をひとつに。冷蔵庫にある食材から、次の一品を考えます。</p>
+              <a class="text-link" href="https://apps.apple.com/jp/app/id6754275917" target="_blank" rel="noopener">App Store <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="https://play.google.com/store/apps/details?id=com.PPOONN.recipa" target="_blank" rel="noopener">Google Play <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <img src="images/apps/hanalog.png" alt="はなログのアイコン" width="512" height="512" loading="lazy">
+            <div>
+              <h3>はなログ</h3>
+              <p>花粉症の症状と服薬を記録し、花粉予報や自分の傾向と一緒に振り返れる体調管理アプリです。</p>
+              <a class="text-link" href="https://apps.apple.com/jp/app/id6760552588" target="_blank" rel="noopener">App Store <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="https://play.google.com/store/apps/details?id=k.k.PPOONN.hanalog" target="_blank" rel="noopener">Google Play <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <img src="images/apps/jibunnmeisyo.png" alt="じぶん名所図鑑のアイコン" width="512" height="512" loading="lazy">
+            <div>
+              <h3>じぶん名所図鑑</h3>
+              <p>世界遺産、城、神社、温泉など、訪れた日本の名所を写真付きで集める旅のコレクションアプリ。</p>
+              <a class="text-link" href="https://apps.apple.com/jp/app/id6758913122" target="_blank" rel="noopener">App Store <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="https://play.google.com/store/apps/details?id=k.k.PPOONN.jibunnmeisyo" target="_blank" rel="noopener">Google Play <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <img src="images/apps/zatsumemo.png" alt="雑メモまとめのアイコン" width="512" height="512" loading="lazy">
+            <div>
+              <h3>雑メモまとめ</h3>
+              <p>チャット感覚で書き留めた断片的なメモを、AIがカテゴリごとに整理するメモアプリです。</p>
+              <a class="text-link" href="https://apps.apple.com/jp/app/id6759522112" target="_blank" rel="noopener">App Store <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <img src="images/apps/limited-reversi.png" alt="Limited Reversiのアイコン" width="512" height="512" loading="lazy">
+            <div>
+              <h3>Limited Reversi</h3>
+              <p>リバーシにデッキ構築の要素を組み合わせた、先を読む楽しさが広がる戦略ゲーム。</p>
+              <a class="text-link" href="https://apps.apple.com/jp/app/id6753639395" target="_blank" rel="noopener">App Store <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="https://play.google.com/store/apps/details?id=k.k.PPOONN.limited_reverai" target="_blank" rel="noopener">Google Play <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
         </div>
       </div>
+    </section>
 
-      <div class="app">
-        <img src="images/HanaLogicon.png" alt="はなログ" class="app-icon">
-        <div class="app-info">
-          <div class="app-name">はなログ</div>
-          <p class="app-description">花粉症の症状・服薬をまとめて管理。薬の飲み忘れ防止から花粉予報、個人傾向の分析まで、つらい花粉シーズンをサポートするアプリ。</p>
-          <div class="app-links">
-            <a href="https://apps.apple.com/jp/app/%E3%81%AF%E3%81%AA%E3%83%AD%E3%82%B0/id6760552588" target="_blank" rel="noopener">App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=k.k.PPOONN.hanalog" target="_blank" rel="noopener">Google Play</a>
+    <section id="studio" aria-labelledby="studio-title">
+      <div class="shell studio-panel">
+        <div class="studio-grid">
+          <div>
+            <p class="section-kicker">About the studio</p>
+            <h2 id="studio-title">小さくつくり、<span>長く育てる。</span></h2>
+            <p class="studio-copy">PPOONN STUDIOは、ひとりの開発者が企画・デザイン・開発・運営まで手がける個人スタジオです。実際に使えること、迷わず使えること、使う人の声で少しずつ良くなることを大切にしています。</p>
+          </div>
+          <div class="principles">
+            <div class="principle"><strong>生活からテーマを見つける</strong><span>自分や身近な人の「これ、もう少し楽にならないかな」から考えます。</span></div>
+            <div class="principle"><strong>目的までをシンプルにする</strong><span>機能を増やすより、使いたい瞬間に迷わない体験を優先します。</span></div>
+            <div class="principle"><strong>公開してからも改善する</strong><span>データ更新、不具合修正、使いやすさの改善を継続しています。</span></div>
           </div>
         </div>
+        <div class="contact-row">
+          <p>アプリに関するご質問・不具合のご連絡・取材のご相談はこちら。</p>
+          <a href="mailto:info@ppoonn.net">info@ppoonn.net</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <span>© 2026 PPOONN STUDIO</span>
+      <div class="footer-links">
+        <a href="#all-apps">アプリ一覧</a>
+        <a href="privacy/">サイトのプライバシーポリシー</a>
+        <a href="mailto:info@ppoonn.net">お問い合わせ</a>
       </div>
     </div>
-  </section>
-
-  <!-- About / Contact -->
-  <section>
-    <div class="container">
-      <h2>運営者<span>情報</span></h2>
-      <div class="about-box">
-        <dl>
-          <dt>サイト名</dt>
-          <dd>こみぐあい（PPOONN STUDIO）</dd>
-          <dt>運営</dt>
-          <dd>PPOONN STUDIO（個人開発）</dd>
-          <dt>お問い合わせ</dt>
-          <dd><a href="mailto:info@ppoonn.net">info@ppoonn.net</a></dd>
-          <dt>プライバシーポリシー</dt>
-          <dd><a href="komiguai/privacy-policy.html">komiguai プライバシーポリシー</a></dd>
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>
-      <a href="komiguai/guide/">使い方ガイド</a> |
-      <a href="komiguai/congestion-info/">混雑率について</a> |
-      <a href="komiguai/faq/">よくある質問</a> |
-      <a href="komiguai/privacy-policy.html">プライバシーポリシー</a> |
-      <a href="mailto:info@ppoonn.net">お問い合わせ</a>
-    </p>
-    <p style="margin-top:8px;">© 2026 PPOONN STUDIO | 混雑率データ: 国土交通省 令和6年度(2024)実績</p>
   </footer>
-
 </body>
 </html>
