@@ -174,14 +174,14 @@
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(46px, 7vw, 88px);
+      font-size: clamp(26px, 3.1vw, 40px);
       line-height: 1.03;
       letter-spacing: -0.065em;
       font-weight: 900;
+      white-space: nowrap;
     }
 
     .hero h1 span {
-      display: block;
       color: var(--violet);
     }
 
@@ -521,6 +521,16 @@
 
     :focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; }
 
+    @media (min-width: 901px) {
+      .catalog .section-heading h2 {
+        max-width: none;
+        font-size: clamp(29px, 3vw, 40px);
+        white-space: nowrap;
+      }
+
+      .studio-panel h2 span { display: block; }
+    }
+
     @media (max-width: 900px) {
       .hero-grid { grid-template-columns: 1fr; }
       .hero-art { min-height: 430px; }
@@ -534,7 +544,7 @@
       nav { gap: 15px; }
       nav a:nth-child(2) { display: none; }
       .hero { padding: 48px 0 36px; }
-      .hero h1 { font-size: clamp(44px, 15vw, 66px); }
+      .hero h1 { font-size: clamp(20px, 6vw, 30px); }
       .hero-copy { font-size: 16px; }
       .hero-art { min-height: 350px; }
       .hero-icon { width: 112px; border-width: 6px; border-radius: 27px; }
@@ -683,10 +693,37 @@
             <p class="section-kicker">App collection</p>
             <h2 id="catalog-title">暮らしのいろいろを、アプリに。</h2>
           </div>
-          <p>食材管理から花粉対策、旅の記録、メモ、ゲームまで。PPOONN STUDIOの公開中アプリです。</p>
+          <p>移動、日記、健康習慣から、食材管理、旅の記録、ゲームまで。PPOONN STUDIOの公開中アプリを一覧にしました。</p>
         </div>
 
         <div class="app-grid">
+          <article class="app-card">
+            <img src="images/apps/komiguai.png" alt="こみぐあいのアイコン" width="512" height="512" loading="lazy">
+            <div>
+              <h3>こみぐあい</h3>
+              <p>通勤ルートや引越し候補を、電車の混雑率・ピーク時間・最混雑区間まで含めて比較できるWebサービス。</p>
+              <a class="text-link" href="https://komiguai.ppoonn.net/">Webで使う <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <img src="images/apps/moonjot.png" alt="Moonjotのアイコン" width="512" height="512" loading="lazy">
+            <div>
+              <h3>Moonjot</h3>
+              <p>今夜の月と天気を眺めながら、120字までのひとことを残せる月齢カレンダー付き日記アプリ。</p>
+              <a class="text-link" href="https://apps.apple.com/jp/app/id6768011693" target="_blank" rel="noopener">App Store <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <img src="images/apps/healthdeck.png" alt="HealthDeckのアイコン" width="512" height="512" loading="lazy">
+            <div>
+              <h3>HealthDeck</h3>
+              <p>1分以内の小さな健康習慣をカードで引いて、実践し、コレクションとして育てるアプリ。</p>
+              <a class="text-link" href="https://apps.apple.com/jp/app/id6777875673" target="_blank" rel="noopener">App Store <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
           <article class="app-card">
             <img src="images/apps/recipa.png" alt="レシぱのアイコン" width="512" height="512" loading="lazy">
             <div>
