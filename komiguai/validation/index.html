@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>経路時間の検証レポート｜こみぐあいの精度と改善方針</title>
+  <meta name="description" content="こみぐあいの推定所要時間を固定サンプル200経路と代表8経路で検証した結果を公開。乗換案内との差、徒歩乗換・直通運転・快速列車など現在の課題と改善方針を説明します。">
+  <link rel="canonical" href="https://ppoonn.net/komiguai/validation/">
+
+  <meta property="og:title" content="経路時間の検証レポート｜こみぐあい">
+  <meta property="og:description" content="固定サンプルと手作業照合で分かった精度、誤差の原因、改善方針を公開します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ppoonn.net/komiguai/validation/">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="こみぐあい">
+  <meta name="twitter:card" content="summary">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8729348790986731" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "経路時間の検証レポート",
+    "description": "こみぐあいの推定所要時間について、内部監査と代表経路の手作業照合の結果を公開します。",
+    "datePublished": "2026-09-23",
+    "dateModified": "2026-09-23",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "PPOONN STUDIO" },
+    "publisher": { "@type": "Organization", "name": "こみぐあい" }
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif; line-height: 1.9; color: #1a1a2e; background: #f5f5f9; }
+    a { color: #4f46e5; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 820px; margin: 0 auto; padding: 0 20px; }
+    .site-header { background: #fff; border-bottom: 1px solid #ececf3; position: sticky; top: 0; z-index: 10; }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 56px; gap: 16px; }
+    .brand { font-weight: 800; font-size: 18px; color: #6366f1; letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 15px; font-size: 13px; font-weight: 600; flex-wrap: wrap; }
+    .nav-links a { color: #555; }
+    .article-head { background: linear-gradient(135deg, #312e81 0%, #6366f1 100%); color: #fff; padding: 44px 20px; }
+    .breadcrumb { font-size: 12px; opacity: .88; margin-bottom: 12px; }
+    .breadcrumb a { color: #fff; }
+    .article-head h1 { font-size: 27px; line-height: 1.5; }
+    .lead { margin-top: 12px; font-size: 14px; opacity: .94; }
+    .updated { margin-top: 10px; font-size: 12px; opacity: .82; }
+    article { background: #fff; padding: 34px 0 42px; }
+    article h2 { font-size: 21px; margin: 38px 0 14px; padding-bottom: 8px; border-bottom: 2px solid #eef2ff; }
+    article h3 { font-size: 17px; margin: 24px 0 8px; }
+    article p, article li { font-size: 15px; color: #333; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 18px 1.4em; }
+    article li { margin-bottom: 7px; }
+    .summary { background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 14px; padding: 20px; margin-bottom: 28px; }
+    .summary strong { display: block; margin-bottom: 6px; }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0 24px; }
+    .metric { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px 10px; text-align: center; }
+    .metric strong { display: block; font-size: 24px; color: #4f46e5; }
+    .metric span { font-size: 12px; color: #64748b; }
+    .table-wrap { overflow-x: auto; margin: 14px 0 20px; }
+    table { width: 100%; border-collapse: collapse; min-width: 720px; font-size: 13px; }
+    th, td { text-align: left; vertical-align: top; border: 1px solid #e5e7eb; padding: 10px; }
+    th { background: #f8fafc; }
+    .good { color: #047857; font-weight: 700; }
+    .check { color: #b45309; font-weight: 700; }
+    .note { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 15px 17px; border-radius: 0 10px 10px 0; margin: 18px 0; }
+    .finding { background: #f8fafc; border-radius: 12px; padding: 17px 18px; margin: 12px 0; }
+    .finding h3 { margin: 0 0 5px; font-size: 16px; }
+    .finding p { margin: 0; font-size: 14px; }
+    .policy { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 14px; padding: 20px; }
+    .cta-box { text-align: center; background: #eef2ff; border-radius: 14px; padding: 28px 18px; margin-top: 34px; }
+    .btn { display: inline-block; color: #fff; background: #6366f1; font-weight: 700; padding: 13px 28px; border-radius: 11px; }
+    .btn:hover { text-decoration: none; }
+    .related { background: #fff; padding: 4px 0 34px; }
+    .related h2 { font-size: 18px; margin-bottom: 12px; }
+    .related a { display: block; color: #1a1a2e; font-weight: 600; background: #fafaff; padding: 13px 16px; border-radius: 10px; margin-bottom: 8px; }
+    .site-footer { text-align: center; padding: 28px 20px 40px; font-size: 12px; color: #777; }
+    .site-footer p { margin-bottom: 8px; }
+    .site-footer a { color: #666; }
+    @media (max-width: 600px) {
+      .nav { align-items: flex-start; padding: 9px 0; }
+      .nav-links { justify-content: flex-end; gap: 8px 12px; }
+      .article-head h1 { font-size: 22px; }
+      .metrics { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav container">
+      <a href="/komiguai/lp/" class="brand">こみぐあい</a>
+      <nav class="nav-links" aria-label="主要ナビゲーション">
+        <a href="/komiguai/lp/">ホーム</a>
+        <a href="/komiguai/guide/">使い方</a>
+        <a href="/komiguai/congestion-info/">混雑率とは</a>
+        <a href="/komiguai/data-methodology/">データ・計算方法</a>
+        <a href="/komiguai/faq/">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="article-head">
+    <div class="container">
+      <div class="breadcrumb"><a href="/komiguai/lp/">こみぐあい</a> ＞ <a href="/komiguai/data-methodology/">データと計算方法</a> ＞ 検証レポート</div>
+      <h1>経路時間の検証レポート</h1>
+      <p class="lead">推定時間をどのように確認し、どこまでを参考値として扱うべきか。実際の検証結果と課題を公開します。</p>
+      <p class="updated">検証日: 2026年9月15〜16日／公開日: 2026年9月23日</p>
+    </div>
+  </div>
+
+  <article>
+    <div class="container">
+      <div class="summary">
+        <strong>結論</strong>
+        代表的な経路では数分差または一致する例がある一方、快速列車、直通運転、列車待ち、離れた駅同士の徒歩乗換が絡むと差が大きくなることが分かりました。こみぐあいの所要時間は住む駅の候補を絞るための参考値とし、実際の出発時刻に合わせた確認には乗換案内を併用してください。
+      </div>
+
+      <h2>検証を行った理由</h2>
+      <p>通勤先から住む駅を探すとき、所要時間が数分違うだけで候補駅が変わることがあります。一方、毎日すべての列車を検索する仕組みにすると、外部サービスへの依存や利用条件、運用費が大きくなります。そこで、まず再現可能な内部監査で異常を探し、代表経路だけ条件をそろえて手作業で照合しました。</p>
+
+      <h2>固定サンプル200経路の内部監査</h2>
+      <p>首都圏の運用中駅から固定seedで駅ペアを作り、直線距離2〜25kmを100件、25〜60kmを100件抽出しました。2026年9月15日時点の駅2,508件、路線222件、接続8,014件のローカルデータを使い、本番データを変更せずに確認しています。</p>
+      <div class="metrics">
+        <div class="metric"><strong>99/100</strong><span>近距離で経路あり</span></div>
+        <div class="metric"><strong>89/100</strong><span>広域で経路あり</span></div>
+        <div class="metric"><strong>23件</strong><span>機械的な要確認候補</span></div>
+      </div>
+      <p>要確認候補は、短距離なのに乗換が多い、距離に対して時間が極端、探索上限付近などの条件で抽出したものです。フラグが付いたこと自体は誤りの確定ではありません。</p>
+      <div class="note"><strong>この監査だけでは正確さを測れません。</strong><br>同じ自前データの中で不自然な結果を探す内部整合性の確認です。そのため、次に外部の乗換案内と条件を合わせて照合しました。</div>
+
+      <h2>代表8経路の手作業照合</h2>
+      <p>一般的な乗換案内アプリで、2026年9月16日8:00出発、時間優先、有料特急なしを目安に確認しました。こみぐあいは発車日時を指定しないため、単純な優劣ではなく、差が生まれた箇所を調べています。以下のこみぐあい側の値は検証当時のもので、現在の検索結果とは異なる場合があります。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>経路</th><th>こみぐあい</th><th>乗換案内</th><th>確認結果</th></tr></thead>
+          <tbody>
+            <tr><td>飛鳥山 → 池袋</td><td>16分・1回</td><td>22分・1回</td><td class="check">徒歩4分は一致。都電と待ち時間で6分差</td></tr>
+            <tr><td>鐘ヶ淵 → 新小岩</td><td>22分・2回</td><td>25分・2回</td><td class="check">最短として選んだ経由地が異なる</td></tr>
+            <tr><td>北品川 → 大手町</td><td>21分・2回</td><td>24分・2回</td><td class="check">直通境界と便の乗換位置が異なる</td></tr>
+            <tr><td>東武竹沢 → 大崎</td><td>120分・3回</td><td>110分・2回</td><td class="check">急行を十分に表現できず探索上限の影響あり</td></tr>
+            <tr><td>下永谷 → 片瀬山</td><td>29分・2回</td><td>29分・2回</td><td class="good">時間・乗換回数・路線が一致</td></tr>
+            <tr><td>面影橋 → 白山</td><td>22分・2回</td><td>29分・2回</td><td class="check">都電の乗車時間と実際の待ち時間で差</td></tr>
+            <tr><td>武蔵小杉 → 石川台</td><td>26分・2回</td><td>17分・2回</td><td class="check">路線は一致。乗車・乗換時間が長め</td></tr>
+            <tr><td>地下鉄成増 → 砂川七番</td><td>結果なし</td><td>68分・3回</td><td class="check">立川→立川北の徒歩接続不足を特定</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>検証から分かった4つの原因</h2>
+      <div class="finding">
+        <h3>1. 列車待ちを入れないと、数分短くなりやすい</h3>
+        <p>飛鳥山→池袋など、複数路線へ乗る経路では乗車開始ごとの待ち時間が積み重なります。一律に3分を足すだけでは偶然合うこともあるため、時刻表から発車間隔の代表値を取る方法を検証しています。</p>
+      </div>
+      <div class="finding">
+        <h3>2. 路線名が変わる地点と、本当の乗換地点は同じとは限らない</h3>
+        <p>京急線から都営浅草線など、直通運転では列車を降りずに路線名だけ変わります。一方、同じ路線でも途中駅で別の便へ乗り換える場合があります。路線グラフだけでは両者を完全に区別できません。</p>
+      </div>
+      <div class="finding">
+        <h3>3. 快速・急行の停車パターンが長距離で効く</h3>
+        <p>東武竹沢→大崎では、東武東上線の急行相当を表現できず各駅間の推定が積み上がりました。長距離ほど、列車種別を考慮しない差が大きくなります。</p>
+      </div>
+      <div class="finding">
+        <h3>4. 別名の近隣駅は、誤接続とのバランスが必要</h3>
+        <p>立川と立川北のように徒歩で乗り換えられる駅がある一方、名前が似ていても実用的に歩けない駅もあります。駅名や直線距離だけで大量に接続せず、公式の乗換情報や歩行経路を優先します。</p>
+      </div>
+
+      <h2>現在の改善方針</h2>
+      <div class="policy">
+        <ol>
+          <li>GTFSの列車時刻から、駅間時間と朝ピーク時の待ち時間を自動集計する。</li>
+          <li><code>transfers.txt</code>・<code>pathways.txt</code>に公式の乗換時間があれば最優先する。</li>
+          <li>公式情報がない徒歩乗換は、OpenStreetMapとOpenTripPlannerで歩行経路を検証する。</li>
+          <li>快速・各駅停車・直通運転を、列車単位で区別できるデータ構造へ段階的に移行する。</li>
+          <li>固定サンプルと確認済み経路を自動テストし、改善による別経路の悪化を防ぐ。</li>
+        </ol>
+      </div>
+      <p>個別の8経路へ手作業で補正値を入れるのではなく、同じ原因を持つ経路全体へ自動的に効く改善を優先します。90点を98点にするために人手で数字を合わせ続ける運用は行いません。</p>
+
+      <h2>結果を見るときのおすすめ</h2>
+      <ul>
+        <li>候補駅の比較では、1〜2分差よりも時間帯・混雑率・乗換回数をまとめて見ます。</li>
+        <li>30分以内など厳密な条件がある場合は、詳細で最短候補を確認します。</li>
+        <li>実際の内見や契約前には、利用予定の曜日と時刻を入れた乗換案内で再確認します。</li>
+        <li>不自然な結果は、出発日時と表示された経路を添えて報告すると原因を追いやすくなります。</li>
+      </ul>
+      <p>データの計算順や表示区分については、<a href="/komiguai/data-methodology/">データと計算方法</a>もご覧ください。</p>
+
+      <div class="cta-box">
+        <p>所要時間を参考値として、混雑率や乗換回数と一緒に候補駅を比較できます。</p>
+        <a href="https://komiguai.ppoonn.net/" class="btn">通勤・通学先から探す</a>
+      </div>
+    </div>
+  </article>
+
+  <div class="related">
+    <div class="container">
+      <h2>関連ページ</h2>
+      <a href="/komiguai/data-methodology/">データと計算方法 →</a>
+      <a href="/komiguai/guide/">こみぐあいの使い方ガイド →</a>
+      <a href="/komiguai/faq/">よくある質問 →</a>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p><a href="/komiguai/lp/">ホーム</a> ・ <a href="/komiguai/guide/">使い方</a> ・ <a href="/komiguai/data-methodology/">データと計算方法</a> ・ <a href="/komiguai/validation/">検証レポート</a> ・ <a href="/komiguai/faq/">FAQ</a> ・ <a href="/komiguai/privacy-policy.html">プライバシーポリシー</a></p>
+    <p>© 2026 こみぐあい（PPOONN STUDIO）</p>
+  </footer>
+</body>
+</html>

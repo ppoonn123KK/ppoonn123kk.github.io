@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>こみぐあいのデータと計算方法｜混雑率・所要時間の根拠</title>
+  <meta name="description" content="こみぐあいが表示する混雑率、所要時間、乗換回数のデータ出典と計算方法を公開します。実測・推定・路線参考の違い、推定値の限界、更新と精度検証の方針を説明します。">
+  <link rel="canonical" href="https://ppoonn.net/komiguai/data-methodology/">
+
+  <meta property="og:title" content="こみぐあいのデータと計算方法">
+  <meta property="og:description" content="混雑率・所要時間・乗換回数の根拠と、推定値の限界を公開します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ppoonn.net/komiguai/data-methodology/">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="こみぐあい">
+  <meta name="twitter:card" content="summary">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8729348790986731" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "こみぐあいのデータと計算方法",
+    "description": "混雑率、所要時間、乗換回数のデータ出典と計算方法、推定値の限界を説明します。",
+    "dateModified": "2026-09-23",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "PPOONN STUDIO" },
+    "publisher": { "@type": "Organization", "name": "こみぐあい" }
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif; line-height: 1.9; color: #1a1a2e; background: #f5f5f9; }
+    a { color: #4f46e5; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+    .site-header { background: #fff; border-bottom: 1px solid #ececf3; position: sticky; top: 0; z-index: 10; }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 56px; gap: 16px; }
+    .brand { font-weight: 800; font-size: 18px; color: #6366f1; letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 15px; font-size: 13px; font-weight: 600; flex-wrap: wrap; }
+    .nav-links a { color: #555; }
+    .article-head { background: linear-gradient(135deg, #4338ca 0%, #818cf8 100%); color: #fff; padding: 44px 20px; }
+    .breadcrumb { font-size: 12px; opacity: .88; margin-bottom: 12px; }
+    .breadcrumb a { color: #fff; }
+    .article-head h1 { font-size: 27px; line-height: 1.5; }
+    .lead { margin-top: 12px; font-size: 14px; opacity: .94; }
+    .updated { margin-top: 10px; font-size: 12px; opacity: .82; }
+    article { background: #fff; padding: 34px 0 42px; }
+    article h2 { font-size: 21px; margin: 38px 0 14px; padding-bottom: 8px; border-bottom: 2px solid #eef2ff; }
+    article h3 { font-size: 17px; margin: 24px 0 8px; }
+    article p, article li { font-size: 15px; color: #333; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 18px 1.4em; }
+    article li { margin-bottom: 7px; }
+    .summary { background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 14px; padding: 20px; margin-bottom: 30px; }
+    .summary strong { display: block; margin-bottom: 6px; }
+    .toc { background: #fafaff; border-radius: 12px; padding: 18px 22px; margin-bottom: 28px; }
+    .toc strong { display: block; margin-bottom: 7px; }
+    .toc ol { margin-bottom: 0; }
+    .data-card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 18px; margin: 12px 0; }
+    .data-card h3 { margin: 0 0 6px; }
+    .label { display: inline-block; min-width: 88px; text-align: center; font-size: 12px; font-weight: 800; border-radius: 999px; padding: 3px 10px; margin-right: 6px; }
+    .measured { color: #047857; background: #d1fae5; }
+    .estimated { color: #a16207; background: #fef3c7; }
+    .reference { color: #475569; background: #e2e8f0; }
+    .table-wrap { overflow-x: auto; margin: 14px 0 20px; }
+    table { width: 100%; border-collapse: collapse; min-width: 610px; font-size: 14px; }
+    th, td { text-align: left; vertical-align: top; border: 1px solid #e5e7eb; padding: 11px 12px; }
+    th { background: #f8fafc; }
+    .notice { border-left: 4px solid #f59e0b; background: #fffbeb; padding: 15px 17px; margin: 18px 0; border-radius: 0 10px 10px 0; }
+    .source-list { background: #f8fafc; border-radius: 12px; padding: 18px 22px; }
+    .source-list li { overflow-wrap: anywhere; }
+    .cta-box { text-align: center; background: #eef2ff; border-radius: 14px; padding: 28px 18px; margin-top: 34px; }
+    .btn { display: inline-block; color: #fff; background: #6366f1; font-weight: 700; padding: 13px 28px; border-radius: 11px; }
+    .btn:hover { text-decoration: none; }
+    .related { background: #fff; padding: 4px 0 34px; }
+    .related h2 { font-size: 18px; margin-bottom: 12px; }
+    .related a { display: block; color: #1a1a2e; font-weight: 600; background: #fafaff; padding: 13px 16px; border-radius: 10px; margin-bottom: 8px; }
+    .site-footer { text-align: center; padding: 28px 20px 40px; font-size: 12px; color: #777; }
+    .site-footer p { margin-bottom: 8px; }
+    .site-footer a { color: #666; }
+    @media (max-width: 600px) {
+      .nav { align-items: flex-start; padding: 9px 0; }
+      .nav-links { justify-content: flex-end; gap: 8px 12px; }
+      .article-head h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav container">
+      <a href="/komiguai/lp/" class="brand">こみぐあい</a>
+      <nav class="nav-links" aria-label="主要ナビゲーション">
+        <a href="/komiguai/lp/">ホーム</a>
+        <a href="/komiguai/guide/">使い方</a>
+        <a href="/komiguai/congestion-info/">混雑率とは</a>
+        <a href="/komiguai/data-methodology/" aria-current="page">データ・計算方法</a>
+        <a href="/komiguai/faq/">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="article-head">
+    <div class="container">
+      <div class="breadcrumb"><a href="/komiguai/lp/">こみぐあい</a> ＞ データと計算方法</div>
+      <h1>こみぐあいのデータと計算方法</h1>
+      <p class="lead">混雑率・所要時間・乗換回数を、どのデータからどのように表示しているかを公開します。</p>
+      <p class="updated">最終更新: 2026年9月23日</p>
+    </div>
+  </div>
+
+  <article>
+    <div class="container">
+      <div class="summary">
+        <strong>先に知っておいていただきたいこと</strong>
+        こみぐあいは、通勤・通学先から住む駅の候補を比較するための参考情報を提供するサービスです。混雑率は公的統計を基礎にしていますが、区間によっては推定値または路線全体の参考値です。所要時間も発車時刻を指定した乗換案内ではないため、最終判断では最新の乗換案内をご確認ください。
+      </div>
+
+      <div class="toc">
+        <strong>このページの内容</strong>
+        <ol>
+          <li><a href="#crowding">混雑率の3つの根拠</a></li>
+          <li><a href="#duration">所要時間の計算方法</a></li>
+          <li><a href="#transfer">乗換・徒歩移動の扱い</a></li>
+          <li><a href="#limitations">分かっている限界</a></li>
+          <li><a href="#maintenance">更新と品質確認</a></li>
+        </ol>
+      </div>
+
+      <h2 id="crowding">混雑率は「実測・推定・路線参考」を区別</h2>
+      <p>基礎にしているのは、国土交通省が毎年公表する都市鉄道の混雑率調査です。表示中の最新年度は令和7年度（2025年度）実績で、路線ごとの朝ピーク1時間と最混雑区間の混雑率が公表されています。</p>
+
+      <div class="data-card">
+        <h3><span class="label measured">実測</span>公表された最混雑区間を通る場合</h3>
+        <p>検索した経路が、国土交通省の公表区間を同じ方向に通過する場合に表示します。公表値との対応が最も明確な状態です。</p>
+      </div>
+      <div class="data-card">
+        <h3><span class="label estimated">推定</span>同じ路線の別区間を通る場合</h3>
+        <p>大都市交通センサスの方向別駅間データを相対的な負荷として利用し、最新年度の公表混雑率で補正します。過去調査の駅間差を使うため、絶対値ではなく区間ごとの傾向を比較するための概算です。</p>
+      </div>
+      <div class="data-card">
+        <h3><span class="label reference">路線参考</span>区間推定に必要な情報が足りない場合</h3>
+        <p>その路線の公表最混雑区間の値を参考として表示します。検索区間そのものの混雑率ではありません。</p>
+      </div>
+
+      <p>混雑率は年間の平均的な傾向です。同じ路線でも列車、車両、曜日、天候、イベント、学校の休暇などで変化します。100%などの数字が個々の列車の乗車率を保証するものではありません。</p>
+
+      <h2 id="duration">所要時間の計算方法</h2>
+      <p>駅と路線をグラフとして扱い、出発駅から到着駅まで到達できる経路候補を探索しています。駅間の時間は、利用可能なデータに応じて次の優先順位で決めます。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>優先度</th><th>根拠</th><th>使い方</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>公共交通オープンデータの時刻表</td><td>同じ駅間を走る平日列車の所要時間を集計し、極端な1便に左右されにくい代表値を使います。</td></tr>
+            <tr><td>2</td><td>駅間距離と路線特性</td><td>時刻表が取得できない区間は、駅座標間の距離と路線別の平均速度から推定します。</td></tr>
+            <tr><td>3</td><td>既定値</td><td>座標も不足する区間だけ、駅間の既定時間へフォールバックします。</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>検索画面の所要時間帯は、選択した時間内に入る経路候補がある駅を探すための条件です。詳細画面では複数経路を表示するため、便や経路によって時間が前後します。</p>
+      <div class="notice"><strong>列車の発車時刻を指定する検索ではありません。</strong><br>現行の本番版は、個別列車の待ち時間、運休、遅延、臨時列車をリアルタイムには反映しません。所要時間は候補を比較するための参考値です。</div>
+
+      <h2 id="transfer">乗換・徒歩移動の扱い</h2>
+      <p>同じ駅グループに属する路線間は、通常駅と大規模駅で異なる乗換余裕時間を設けています。駅名が異なる徒歩乗換は、公式の駅グループと駅座標を使い、既存の余裕時間に距離から求めた徒歩時間を加えます。</p>
+      <ul>
+        <li>同じ名称でも遠く離れた駅は、駅IDと距離を確認して誤接続を防ぎます。</li>
+        <li>徒歩区間は地図上で概略を示しますが、駅入口や実際の歩道形状を表すものではありません。</li>
+        <li>直通運転では、路線名が変わっても降車不要な場合があります。現行データで区別できない境界は、乗換として表示されることがあります。</li>
+      </ul>
+
+      <h2 id="limitations">現在分かっている限界</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>起こり得る差</th><th>主な理由</th><th>確認方法</th></tr></thead>
+          <tbody>
+            <tr><td>数分短い／長い</td><td>列車待ち、停車時間、ホーム間移動を簡略化している</td><td>利用日時を入れた乗換案内で確認</td></tr>
+            <tr><td>快速経路が出ない</td><td>一部路線は列車種別ごとの停車パターンを十分に表現できていない</td><td>長距離移動では複数候補を比較</td></tr>
+            <tr><td>直通なのに乗換表示</td><td>路線境界と実際の降車を完全には区別できない</td><td>詳細の経由駅と乗換案内を確認</td></tr>
+            <tr><td>経路が見つからない</td><td>探索時間・乗換回数の上限、徒歩接続の不足</td><td>条件を広げるか通常の乗換案内で確認</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>個別の駅や区間へ手作業で数字を合わせると、ダイヤ改正後に古い補正が残ります。そのため、こみぐあいでは公式データや再現可能な計算から自動更新できる改善を優先しています。</p>
+
+      <h2 id="maintenance">更新と品質確認</h2>
+      <ol>
+        <li>国土交通省の混雑率が更新されたら、年度・混雑区間・ピーク時間をまとめて更新します。</li>
+        <li>同じ条件を再現できる固定サンプル経路で、到達不能や不自然な遠回りを定期確認します。</li>
+        <li>代表経路は日時と条件をそろえて一般的な乗換案内と手作業で照合します。</li>
+        <li>10分以上または20%以上の差、乗換回数が2回以上異なるケースを優先して原因調査します。</li>
+        <li>改善は特定の1経路だけでなく、同じ原因を持つ路線へ横断的に効く方法で実装します。</li>
+      </ol>
+      <p>実際に行った比較と判明した課題は、<a href="/komiguai/validation/">経路時間の検証レポート</a>で公開しています。不具合や不自然な経路は、日時・出発駅・到着駅を添えて<a href="https://forms.gle/Ss1SBdmeDsTYzweZ9">お問い合わせフォーム</a>からお知らせください。</p>
+
+      <h2>主なデータ出典</h2>
+      <ul class="source-list">
+        <li><a href="https://www.mlit.go.jp/report/press/tetsudo04_hh_000139.html">国土交通省「都市部の路線における最混雑区間の混雑率」</a></li>
+        <li><a href="https://www.mlit.go.jp/sogoseisaku/transport/sosei_transport_tk_000035.html">国土交通省「大都市交通センサス」</a></li>
+        <li><a href="https://developer.odpt.org/">公共交通オープンデータセンター</a></li>
+        <li><a href="https://gtfs.org/ja/documentation/schedule/reference/">GTFS Schedule 公式リファレンス</a></li>
+        <li><a href="https://www.ekidata.jp/">駅データ.jp</a></li>
+        <li><a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>（地図表示）</li>
+      </ul>
+
+      <div class="cta-box">
+        <p>数字の根拠と限界を踏まえて、通勤・通学先から候補駅を比較できます。</p>
+        <a href="https://komiguai.ppoonn.net/" class="btn">住む駅の候補を探す</a>
+      </div>
+    </div>
+  </article>
+
+  <div class="related">
+    <div class="container">
+      <h2>関連ページ</h2>
+      <a href="/komiguai/validation/">経路時間の検証レポート →</a>
+      <a href="/komiguai/congestion-info/">電車の混雑率とは？目安と避けるコツ →</a>
+      <a href="/komiguai/guide/">こみぐあいの使い方ガイド →</a>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p><a href="/komiguai/lp/">ホーム</a> ・ <a href="/komiguai/guide/">使い方</a> ・ <a href="/komiguai/data-methodology/">データと計算方法</a> ・ <a href="/komiguai/validation/">検証レポート</a> ・ <a href="/komiguai/faq/">FAQ</a> ・ <a href="/komiguai/privacy-policy.html">プライバシーポリシー</a></p>
+    <p>© 2026 こみぐあい（PPOONN STUDIO）</p>
+  </footer>
+</body>
+</html>
