@@ -166,6 +166,41 @@
       color: #666;
     }
 
+    /* Candidate search example */
+    .example-card {
+      background: white;
+      border: 1px solid #e0e0ff;
+      border-radius: 14px;
+      padding: 22px;
+    }
+    .example-condition {
+      font-size: 14px;
+      font-weight: 700;
+      color: #4338ca;
+      margin-bottom: 14px;
+    }
+    .example-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .example-item {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .example-item span {
+      display: block;
+      margin-top: 3px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 400;
+    }
+    .example-note { font-size: 12px; color: #666; }
+
     /* Ranking */
     .rank-list { list-style: none; }
     .rank-item {
@@ -276,6 +311,7 @@
     @media (max-width: 480px) {
       .hero h1 { font-size: 22px; }
       .routes-grid { grid-template-columns: 1fr; }
+      .example-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -359,6 +395,21 @@
           <div class="feature-title">国土交通省の公式データ</div>
           <div class="feature-desc">令和7年度の実績データに基づく信頼性の高い混雑率情報。首都圏の主要路線をカバー。</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Candidate search example -->
+  <section>
+    <div class="container">
+      <h2>大崎へ通う場合の<span>候補例</span></h2>
+      <div class="example-card">
+        <p class="example-condition">入力例：通勤・通学先「大崎」／所要時間30分前後／乗換1回まで</p>
+        <div class="example-grid">
+          <div class="example-item">昭和島 <span>大崎まで約28分・乗換1回</span></div>
+          <div class="example-item">お台場海浜公園 <span>大崎まで約28分・乗換1回</span></div>
+        </div>
+        <p class="example-note">2026年9月15日の表示例です。検索結果では候補駅を地図と一覧で確認し、経路ごとの混雑率も比較できます。所要時間は発車時刻・列車待ち・便種別・乗換で変わる参考値のため、内見や契約前には利用予定時刻を乗換案内で確認してください。計算方法と検証結果は<a href="/komiguai/validation/">経路時間の検証レポート</a>で公開しています。</p>
       </div>
     </div>
   </section>

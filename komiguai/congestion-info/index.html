@@ -26,6 +26,7 @@
     "headline": "電車の混雑率とは？目安と通勤混雑を避けるコツ",
     "description": "電車の混雑率の意味と各段階の目安、首都圏の混雑率の推移、通勤混雑を避けるコツを解説。",
     "inLanguage": "ja",
+    "dateModified": "2026-10-02",
     "author": { "@type": "Organization", "name": "PPOONN STUDIO" },
     "publisher": { "@type": "Organization", "name": "こみぐあい" }
   }
@@ -54,6 +55,12 @@
     article h2 { font-size: 21px; font-weight: 800; margin: 36px 0 14px; padding-bottom: 8px; border-bottom: 2px solid #f0f0ff; }
     article h2:first-child { margin-top: 0; }
     article p { font-size: 15px; color: #333; margin-bottom: 16px; }
+
+    .latest-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
+    .latest-item { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px 10px; text-align: center; }
+    .latest-item strong { display: block; color: #4f46e5; font-size: 24px; }
+    .latest-item span { font-size: 13px; color: #64748b; }
+    .formula { background: #eef2ff; border-left: 4px solid #6366f1; border-radius: 0 10px 10px 0; padding: 14px 16px; }
 
     .level { display: flex; gap: 12px; align-items: flex-start; border-radius: 12px; padding: 16px; margin-bottom: 12px; border: 1px solid; }
     .level .rate { flex-shrink: 0; font-weight: 800; font-size: 16px; padding: 4px 10px; border-radius: 8px; }
@@ -87,7 +94,7 @@
     .site-footer .footer-links a { color: #888; }
     .site-footer .footer-cta { margin-bottom: 12px; font-size: 14px; }
 
-    @media (max-width: 480px) { .article-head h1 { font-size: 20px; } .nav { height: auto; padding: 8px 0; } }
+    @media (max-width: 480px) { .article-head h1 { font-size: 20px; } .nav { height: auto; padding: 8px 0; } .latest-summary { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -118,6 +125,16 @@
       <h2>電車の混雑率とは</h2>
       <p>混雑率とは、電車の定員に対して実際に乗車している人数の割合を示す指標です。国土交通省が毎年公表しており、朝のピーク時間帯（通常7:30〜8:30頃）における最も混雑する区間のデータが基準となっています。</p>
       <p>例えば、定員100人の車両に150人が乗車している場合、混雑率は150%となります。この数値が高いほど車内が混み合い、通勤時のストレスが増加します。</p>
+
+      <h2>最新の調査結果（令和7年度・2025年度実績）</h2>
+      <p>国土交通省が2026年7月28日に公表した調査では、主要区間の平均混雑率は東京圏143%、大阪圏117%、名古屋圏126%でした。東京圏と大阪圏は前年度より上昇し、名古屋圏は横ばいです。</p>
+      <div class="latest-summary">
+        <div class="latest-item"><strong>143%</strong><span>東京圏（前年度139%）</span></div>
+        <div class="latest-item"><strong>117%</strong><span>大阪圏（前年度116%）</span></div>
+        <div class="latest-item"><strong>126%</strong><span>名古屋圏（前年度126%）</span></div>
+      </div>
+      <p class="formula"><strong>混雑率（%）＝輸送人員 ÷ 輸送力 × 100</strong><br>輸送力は、車両定員・編成両数・ピーク1時間の列車本数から算出されます。公表値は主に2025年10〜11月の1日または複数日の乗車人員を基にした、最混雑時間帯1時間の平均です。</p>
+      <p class="note">出典：国土交通省「<a href="https://www.mlit.go.jp/report/press/tetsudo04_hh_000139.html" rel="noopener noreferrer">都市鉄道の混雑率調査結果（令和7年度実績）</a>」</p>
 
       <h2>混雑率の目安</h2>
       <p>国土交通省は混雑率の目安を以下のように定義しています。引越し先を選ぶ際の参考にしてください。</p>
