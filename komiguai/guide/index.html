@@ -34,6 +34,7 @@
     "@type": "HowTo",
     "name": "こみぐあいで通勤ルートの混雑度を比較する方法",
     "description": "出発駅と到着駅を入力して、首都圏の通勤ルートの混雑率を比較する手順。",
+    "dateModified": "2026-10-11",
     "step": [
       { "@type": "HowToStep", "name": "出発駅と到着駅を入力する", "text": "トップページの検索フォームに通勤の出発駅と到着駅を入力します。" },
       { "@type": "HowToStep", "name": "混雑度を検索する", "text": "「混雑度を検索」ボタンを押すと、ルート候補が混雑率とともに一覧表示されます。" },
@@ -85,6 +86,13 @@
     .quick-start a { flex-shrink: 0; display: inline-block; background: #6366f1; color: #fff; font-weight: 700; padding: 10px 18px; border-radius: 9px; }
     .quick-start a:hover { text-decoration: none; }
 
+    .service-summary { background: #fafaff; border: 1px solid #e0e0ff; border-radius: 14px; padding: 20px; margin: 0 0 28px; }
+    .service-summary h2 { margin: 0 0 10px; border: 0; padding: 0; }
+    .service-summary p { margin-bottom: 12px; }
+    .service-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .service-links a { display: block; background: #fff; border: 1px solid #c7d2fe; border-radius: 10px; padding: 12px 14px; font-weight: 700; }
+    .service-links small { display: block; color: #666; font-weight: 400; margin-top: 2px; }
+
     .cta-box { text-align: center; padding: 32px 20px; background: #f0f0ff; border-radius: 14px; margin: 32px 0 8px; }
     .cta-box .btn { display: inline-block; background: #6366f1; color: #fff; font-weight: 700; padding: 14px 40px; border-radius: 12px; }
     .cta-box .btn:hover { text-decoration: none; transform: scale(1.03); }
@@ -105,6 +113,7 @@
       .nav { height: auto; padding: 8px 0; }
       .quick-start { align-items: stretch; flex-direction: column; }
       .quick-start a { text-align: center; }
+      .service-links { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -133,7 +142,15 @@
 
   <article>
     <div class="container">
-      <p>「こみぐあい」は、首都圏の電車の混雑率と通勤ルートを比較できる無料・登録不要のWebサービスです。引越し先の検討や、通勤ルートの見直しにお役立てください。このページでは、基本的な使い方から活用テクニックまでをご紹介します。</p>
+      <section class="service-summary" aria-labelledby="about-komiguai">
+        <h2 id="about-komiguai">こみぐあいとは</h2>
+        <p>「こみぐあい」は、首都圏の電車の混雑率と通勤ルートを比較できる無料・登録不要のWebサービスです。駅間のルート比較に加えて、通勤・通学先から所要時間や乗換回数に合う住む駅の候補も探せます。</p>
+        <div class="service-links">
+          <a href="https://komiguai.ppoonn.net/">駅間の混雑度を調べる<small>出発駅と到着駅を指定して比較</small></a>
+          <a href="https://komiguai.ppoonn.net/discover">住む駅の候補を探す<small>通勤・通学先と希望条件から検索</small></a>
+        </div>
+      </section>
+      <p>引越し先の検討や、通勤ルートの見直しにお役立てください。このページでは、基本的な使い方から活用テクニックまでをご紹介します。サービスについて迷ったときは<a href="/komiguai/faq/">よくある質問</a>も確認できます。</p>
       <div class="quick-start">
         <div><strong>説明を読まずに検索できます</strong><p>出発駅・到着駅、または通勤・通学先から探し始められます。</p></div>
         <a href="https://komiguai.ppoonn.net/">こみぐあいを開く</a>
